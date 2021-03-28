@@ -87,6 +87,9 @@ at [tunapanda.github.io/wikonnect)](https://tunapanda.github.io/wikonnect)
 - [Mac installation](https://docs.docker.com/docker-for-mac/install/) -Installed as docker desktop
 - [Windows installation](https://docs.docker.com/docker-for-windows/install/)  -Installed as docker desktop
 
+##### Docker Compose installation
+- [Installation Instructions](https://docs.docker.com/compose/install/)
+
 #### Starting a development server
 
 1) If your Docker engine instance is running on your terminal, navigate into the **project root directory**:
@@ -226,7 +229,7 @@ Frontend set up steps:
 
 1) Navigate into the **frontend** directory
     ```
-    cd server/
+    cd fronts
     ```
 2) Install the frontend dependencies
     ```
