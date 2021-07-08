@@ -1,5 +1,4 @@
 greeting: Welcome {name}
-role: "Role: {role}"
 bio: Bio
 edit_button: Edit my profile
 chapters_created: Chapters created

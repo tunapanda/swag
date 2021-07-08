@@ -1,6 +1,7 @@
 const Model = require('./_model');
 const knex = require('../db/db');
-
+const {socketEventEmitter} = require('../utils/event-emitter');
+const {events} = require('../utils/socket-events');
 class Notification extends Model {
   static get tableName() {
     return 'notifications';
@@ -19,6 +20,10 @@ class Notification extends Model {
     };
   }
 
+  async $afterInsert(){
+    await super.$afterInsert();
+    socketEventEmitter.emit(events.user.notification.created,this);
+  }
 }
 
 Notification.knex(knex);

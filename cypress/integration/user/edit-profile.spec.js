@@ -96,7 +96,7 @@ describe('Edit User Profile', () => {
                     .click();
             });
 
-        cy.get('.ember-notify.ember-notify-show.success .message')
+        cy.get('.ember-notify.ember-notify-show.alert-success .message')
             .should('be.visible');
     });
 
@@ -152,7 +152,7 @@ describe('Edit User Profile', () => {
 
             });
 
-        cy.get('.ember-notify.ember-notify-show.success')
+        cy.get('.ember-notify.ember-notify-show.alert-success')
             .should('not.exist');
     });
 

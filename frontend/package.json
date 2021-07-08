@@ -40,7 +40,7 @@
     "cross-env": "^7.0.0",
     "ember-ajax": "^5.0.0",
     "ember-auto-import": "^1.10.1",
-    "ember-bootstrap": "^4.6.3",
+    "ember-bootstrap": "^4.9.0",
     "ember-bootstrap-changeset-validations": "^4.0.0",
     "ember-changeset-validations": "^3.14.2",
     "ember-cli": "~3.24.0",

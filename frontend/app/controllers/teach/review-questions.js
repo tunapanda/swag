@@ -68,9 +68,8 @@ export default class ReviewQuestionsController extends Controller {
         (question) => question.category
       );
 
-      this.chapter.reviewQuestions = this.selectedCategories.addObjects(
-        defaultCategories
-      );
+      this.chapter.reviewQuestions =
+        this.selectedCategories.addObjects(defaultCategories);
       await this.chapter.save();
       //reset the selected questions
       this.selectedCategories = null;

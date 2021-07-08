@@ -24,8 +24,8 @@ const router = new Router({
  * @apiSuccess {String} notification[id] notification id
  * @apiSuccess {String} notification[title] Title of the notification
  * @apiSuccess {String} notification[body] Body of the notification
- * @apiSuccess {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiSuccess {Object} [notification[itemId]] Optional Id of model record
+ * @apiSuccess {Object} [notification[model]] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiSuccess {Object} [notification[itemId]] Id of model record
  * @apiSuccess {String} notification[eventType] Type of event. Can be used to resolve related notification model.
  * @apiSuccess {String}  notification[recipientId]  Id of the user being notified
  * @apiSuccess {Boolean} notification[read]  if user has read the notification
@@ -71,35 +71,34 @@ router.get('/:id', requireAuth, async (ctx) => {
  *
  * @apiHeader {String} Authorization [Bearer << JWT here>>]
  *
- * @apiParam (Query Params) {Object} notification Top level object
- * @apiParam (Query Params) {String} notification[id] notification id
- * @apiParam (Query Params) {String} notification[title] Title of the notification
- * @apiParam (Query Params) {String} notification[body] Body of the notification
- * @apiParam (Query Params) {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiParam (Query Params) {Object} [notification[itemId]] Optional Id of model record
- * @apiParam (Query Params) {String} notification[eventType] Type of event. Can be used to resolve related notification model.
- * @apiParam (Query Params) {String}  notification[recipientId]  Id of the user being notified
- * @apiParam (Query Params) {Boolean} notification[read]  if user has read the notification
- * @apiParam (Query Params) {Object} [notification[metadata]]  Any metadata related to the notification
+ * @apiParam (Query Params) {String} [id] notification id
+ * @apiParam (Query Params) {String} [title] Title of the notification
+ * @apiParam (Query Params) {String} [body] Body of the notification
+ * @apiParam (Query Params) {String} [model] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiParam (Query Params) {Object} [notification[itemId]] Id of referenced model record
+ * @apiParam (Query Params) {String} [eventType] Type of event. Can be used to resolve related notification model.
+ * @apiParam (Query Params) {String} [recipientId]  Id of the user being notified
+ * @apiParam (Query Params) {String} [creatorId]  Id of the user who created the notification
+ * @apiParam (Query Params) {Boolean} [read]  if user has read the notification
  *
  *
- * @apiSuccess {Object} notification Top level object
- * @apiSuccess {String} notification[id] notification id
- * @apiSuccess {String} notification[title] Title of the notification
- * @apiSuccess {String} notification[body] Body of the notification
- * @apiSuccess {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiSuccess {Object} [notification[itemId]] Optional Id of model record
- * @apiSuccess {String} notification[eventType] Type of event. Can be used to resolve related notification model.
- * @apiSuccess {String}  notification[recipientId]  Id of the user being notified
- * @apiSuccess {Boolean} notification[read]  if user has read the notification
- * @apiSuccess {Object} [notification[metadata]]  Any metadata related to the notification
- * @apiSuccess {String} notification[createdAt] date created
- * @apiSuccess {String} notification[updatedAt] date updated
+ * @apiSuccess {Object} notifications Top level object
+ * @apiSuccess {String} notifications[id] notification id
+ * @apiSuccess {String} notifications[title] Title of the notification
+ * @apiSuccess {String} notifications[body] Body of the notification
+ * @apiSuccess {Object} [notifications[model]] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiSuccess {Object} [notifications[itemId]]  Id of model record
+ * @apiSuccess {String} notifications[eventType] Type of event. Can be used to resolve related notification model.
+ * @apiSuccess {String}  notifications[recipientId]  Id of the user being notified
+ * @apiSuccess {Boolean} notifications[read]  if user has read the notification
+ * @apiSuccess {Object} [notifications[metadata]]  Any metadata related to the notification
+ * @apiSuccess {String} notifications[createdAt] date created
+ * @apiSuccess {String} notifications[updatedAt] date updated
  *
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *          {
- *             "notification":{
+ *             "notifications":[{
  *                 "id": "I3ml3x-AAPE",
  *                 "title": "Your chapter has been approved",
  *                 "body": "Your recently published chapter has been approved!",
@@ -112,7 +111,7 @@ router.get('/:id', requireAuth, async (ctx) => {
  *                 "metadata":{"sendEmail": true},
  *                 "createdAt": "2021-04-20T20:12:39.830Z",
  *                 "updatedAt": "2021-04-20T20:12:39.830Z"
- *                }
+ *                }]
  *          }
  *
  */
@@ -133,11 +132,10 @@ router.get('/', requireAuth, async (ctx) => {
  *
  * @apiHeader {String} Authorization Bearer << JWT here>>
  *
- * @apiParam (Request Body) {Object} notification Top level object
  * @apiParam (Request Body) {String} notification[title] Title of the notification
  * @apiParam (Request Body) {String} notification[body] Body of the notification
- * @apiParam (Request Body) {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiParam (Request Body) {Object} [notification[itemId]] Optional Id of model record
+ * @apiParam (Request Body) {Object} [notification[model]] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiParam (Request Body) {Object} [notification[itemId]] Id of model record
  * @apiParam (Request Body) {String} notification[eventType] Type of event. Can be used to resolve related notification model.
  * @apiParam (Request Body) {String}  notification[recipientId]  Id of the user being notified
  * @apiParam (Request Body) {Boolean} notification[read]  if user has read the notification
@@ -148,8 +146,8 @@ router.get('/', requireAuth, async (ctx) => {
  * @apiSuccess {String} notification[id] notification id
  * @apiSuccess {String} notification[title] Title of the notification
  * @apiSuccess {String} notification[body] Body of the notification
- * @apiSuccess {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiSuccess {Object} [notification[itemId]] Optional Id of model record
+ * @apiSuccess {Object} [notification[model]] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiSuccess {Object} [notification[itemId]] Id of model record
  * @apiSuccess {String} notification[eventType] Type of event. Can be used to resolve related notification model.
  * @apiSuccess {String}  notification[recipientId]  Id of the user being notified
  * @apiSuccess {Boolean} notification[read]  if user has read the notification
@@ -202,11 +200,10 @@ router.post('/', requireAuth, async ctx => {
  *
  * @apiParam (URI Param) {String} id Notification Id to update
  *
- * @apiParam (Request Body) {Object} notification Top level object
  * @apiParam (Request Body) {String} [notification[title]] Title of the notification
  * @apiParam (Request Body) {String} [notification[body]] Body of the notification
- * @apiParam (Request Body) {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiParam (Request Body) {Object} [notification[itemId]] Optional Id of model record
+ * @apiParam (Request Body) {Object} [notification[model]] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiParam (Request Body) {Object} [notification[itemId]] Id of model record
  * @apiParam (Request Body) {String} [notification[eventType]] Type of event. Can be used to resolve related notification model.
  * @apiParam (Request Body) {String}  [notification[recipientId]]  Id of the user being notified
  * @apiParam (Request Body) {Boolean} [notification[read]]  if user has read the notification
@@ -217,8 +214,8 @@ router.post('/', requireAuth, async ctx => {
  * @apiSuccess {String} notification[id] notification id
  * @apiSuccess {String} notification[title] Title of the notification
  * @apiSuccess {String} notification[body] Body of the notification
- * @apiSuccess {Object} [notification[model]] Optional model name related to notification (refer to Wikonnect/frontend/app/models)
- * @apiSuccess {Object} [notification[itemId]] Optional Id of model record
+ * @apiSuccess {Object} [notification[model]] Model name related to notification (refer <a target="_blank" href="https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models"> here </a>)
+ * @apiSuccess {Object} [notification[itemId]] Id of model record
  * @apiSuccess {String} notification[eventType] Type of event. Can be used to resolve related notification model.
  * @apiSuccess {String}  notification[recipientId]  Id of the user being notified
  * @apiSuccess {Boolean} notification[read]  if user has read the notification

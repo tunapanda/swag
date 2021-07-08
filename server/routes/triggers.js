@@ -69,7 +69,6 @@ router.get('/', requireAuth, async ctx => {
  *
  * @apiHeader {String} Authorization Bearer << JWT here>>
  *
- * @apiParam (Request Body) {Object} trigger Top level object
  * @apiParam (Request Body) {Object} trigger[id] trigger id
  * @apiParam (Request Body) {Object} trigger[name] name given to trigger
  * @apiParam (Request Body) {Object} trigger[description] trigger explanation
@@ -105,7 +104,6 @@ router.post('/', requireAuth, async ctx => {
  * @apiParam (URI Param) {String} id Id of the trigger to update
   * @apiHeader {String} Authorization Bearer << JWT here>>
  *
- * @apiParam (Request Body) {Object} trigger Top level object
  * @apiParam (Request Body) {Object} trigger[id] trigger id
  * @apiParam (Request Body) {Object} trigger[name] name given to trigger
  * @apiParam (Request Body) {Object} trigger[description] trigger explanation

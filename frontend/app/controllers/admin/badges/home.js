@@ -6,6 +6,7 @@ import { A } from '@ember/array';
 
 export default class AdminBadgesHomeController extends Controller {
   @service me;
+  @service store;
   @tracked badgeSearchTerm;
   @tracked bulkSelectedItems;
   @tracked showPerPage = 10;
@@ -23,7 +24,7 @@ export default class AdminBadgesHomeController extends Controller {
 
   get parseBadges() {
     const obj = A([]);
-    this.model.map((badge) => {
+    this.store.peekAll('badge').map((badge) => {
       obj.pushObject(new MiniBadge(badge));
     });
     return obj;

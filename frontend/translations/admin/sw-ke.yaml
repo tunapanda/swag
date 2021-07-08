@@ -6,6 +6,7 @@ sidenav:
   badges: Beji
   manage_badges: Usimamizi wa Beji
   badge_users: Watumiaji na Beji
+  surveys: Utafiti wa Mtumiaji
 
 badges:
   titles:
@@ -15,38 +16,38 @@ badges:
     popup: Jinsi ya kupata beji hii
 
   buttons:
-    create: Unda beji mpya
+    create: Unda Beji Mpya
     details: Maelezo
-    view_all: Ona yote
-    bulk_action: Hatua ya wingi
-    delete_all:  Futa zote
-    new: Beji mpya
-    earning: Jinsi ya kupata
+    view_all: Ona Yote
+    bulk_action: Hatua ya Wingi
+    delete_all:  Futa Zote
+    new: Beji Mpya
+    earning: Jinsi ya Kupata
     upload_icon: FUNGUA FAILI
     save: Hifadhi
-    unpublish: Ondoa uchapizo
+    unpublish: Ondoa Uchapizo
     publish: Kuchapisha
-    delete: Futa beji
-    edit: Hariri beji
+    delete: Futa Beji
+    edit: Hariri Beji
 
   labels:
     badge_create_prompt: Halo {name}, ungependa kuunda baji mpya leo?
     badges_total: Idadi ya Beji
     badges_earned: Beji Zilizopatikana
-    upload_icon: Pakia ikoni ya bagde
-    change_icon: Badilisha ikoni ya bagde
+    upload_icon: Pakia Ikoni ya Beji
+    change_icon: Badilisha Ikoni ya Beji
     options: Chaguzi
     search_placeholder: Tafuta Beji
 
     #below are form related values
-    trigger: Kuchochea
-    trigger_placeholder: Chagua kichocheo
+    trigger: Hatua ya Kuchochea
+    trigger_placeholder: Chagua Kichocheo
     name: Jina
-    name_placeholder: Jina la beji
-    description: Jinsi ya kupata
+    name_placeholder: Jina la Beji
+    description: Jinsi ya Kupata
     description_placeholder: Eleza jinsi ya kupata beji
-    expiry_date: Tarehe ya kumalizika
-    frequency: Mara ngapi
+    expiry_date: Tarehe ya Kumalizika Muda
+    frequency: Mara Ngapi
     frequency_placeholder: Idadi ambayo mtu anapaswa kuchochea kupata baji
     points: Pointi
     points_placeholder: Pointi zinazohusiana na beji
@@ -56,10 +57,10 @@ badges:
     reminder_message_placeholder: Unda sura 4 zaidi kufungua baji ya Ninja na upate alama 1000
   tables:
     name: Jina
-    description: Jinsi ya kupata
-    expiry: Tarehe ya mwisho wa matumizi
+    description: Jinsi ya Kupata
+    expiry: Tarehe ya Mwisho wa Matumizi
     status: Hali
-    users_earned: Watumiaji walipata
+    users_earned: Watumiaji Walipata
     action: Hatua
 
 users:
@@ -73,15 +74,76 @@ users:
     role: Jukumu
     status: Hali ya Uthibitishaji
     action: Hatua
-    
+
   details:
     profile_image_alt: Picha ya Profaili
     chapters_created: Sura Zimeundwa
     chapters_created_alt: chapters created icon
     completed_chapters: Sura zilizokamilika
-    completed_chapters_alt: completed chapters icon 
+    completed_chapters_alt: completed chapters icon
     points_accumulated: Pointi zilizokusanywa
     points_accumulated_alt: points accumulated icon
     badges_earned: Beji Zilizopatikana
     badges_earned_alt: badges earned icon
     details_button: Maelezo
+surveys:
+  titles:
+    manage: Usimamizi wa Utafiti
+    all_surveys: Tafiti Zilizopo
+  buttons:
+    new: Utafiti Mpya
+    sort: Panga kwa
+    view_survey: Angalia Uchunguzi
+    unpublish: Chapisha
+    publish: Kuchapisha
+    delete: Futa Utafiti
+    edit: Hariri Utafiti
+    archive: Utafiti wa Jalada
+    save: Wasilisha Utafiti
+
+  labels:
+    search_placeholder: Tafuta Utafiti
+    survey_options: Chaguzi
+    edit_form_title: Hariri Utafiti
+    create_form_title: Unda Utafiti Mpya
+
+    sort_options: Panga kwa
+    sort_by_status: Hali
+    sort_by_name: Jina
+    sort_by_expiry: Kuisha Muda
+    #below are form related values
+    trigger: Kitendo ya Kuchochea
+    trigger_placeholder: Chagua kitendo cha kuchochea
+    name: Jina la Utafiti
+    name_placeholder: Jina la utafiti
+    expiry_date: Tarehe ya Kumalizika
+    frequency: Mara Mgapi
+    frequency_placeholder: Idadi ambayo mtu anapaswa kuchochea kupata baji
+    embed: Pachika Msimbo/Kiunga
+    embed_placeholder: Msimbo wa upachikaji wa utafiti
+    description: Onyesha Ujumbe
+    description_placeholder: Tunataka kukupa uzoefu bora, kwa hivyo maoni yako ni muhimu sana kwetu
+
+    #below are notifications related values
+    delete_confirmation: Je! Una uhakika unataka kufuta utafiti?
+    publish_confirmation: Je! Una uhakika unataka kuchapisha utafiti?
+    archive_confirmation: Je! Una uhakika unataka kuhifadhi kumbukumbu?
+    unpublish_confirmation: Je! Una uhakika unataka kuchapisha utafiti?
+    status_updated: Hali ya utafiti imesasishwa vizuri
+    survey_updated: Melezo ya utafiti yamesasishwa kwa mafanikio
+    survey_created: Utafiti umehifadhiwa kwa mafanikio
+    survey_deleted: Utafiti umefutwa kwa mafanikio
+    survey_deletion_error: Hatukuweza kufuta utafiti. Hitilafu isiyotarajiwa ilitokea
+    survey_update_error: Hatukuweza kusasisha utafiti. Hitilafu isiyotarajiwa ilitokea
+    survey_create_error: Hatukuweza kuhifadhi maelezo ya utafiti. Hitilafu isiyotarajiwa ilitokea
+
+  help:
+    what_trigger: Kitendo ambacho mtumiaji anapaswa kufanya ili kuhitimu kujaza utafiti
+    what_frequency: Idadi ya nyakati ambazo mtumiaji anapaswa kutekeleza kitendo hicho
+    what_expiry: Utafiti huu hautapatikana baada ya tarehe ya kumalizika muda
+    what_embed: >-
+            Fomu ya utafiti  ya kupachika (Google Form iframe).<br>
+            Kwa usaidizi wa jinsi ya kupata msimbo wa kupachika wa fomu ya Google,
+            bonyeza <a target="_blank" rel="noreferrer" href="https://support.google.com/a/users/answer/9308623?hl=en"> hapa </a>
+    what_message: Sababu ama umuhimu wa kujaza utafiti
+

@@ -30,7 +30,14 @@ const server = http.createServer(app.callback());
 
 const io = socketIO(server);
 
-require('./socket-impl')(io);
+/**
+ * Call event handlers into the app process
+ */
+
+require('./event-handlers/socket-events')(io);
+require('./event-handlers/mne-surveys')();
+
+
 
 /*
  * Listen on provided port, on all network interfaces.

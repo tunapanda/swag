@@ -265,7 +265,6 @@ router.post('/', requireAuth, validateRating, async ctx => {
  *
  * @apiParam (URI Param) {String} id Id of the rating to update
  *
- * @apiParam (Request Body) {Object} rating Top level object
  * @apiParam (Request Body) {String} [rating[id]] rating id
  * @apiParam (Request Body) {String} [rating[chapterId]] associated chapter Id
  * @apiParam (Request Body) {Object} [rating[metadata]] rating metadata

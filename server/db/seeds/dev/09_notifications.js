@@ -1,5 +1,5 @@
 const {faker, seed_number} = require('../_seeds');
-const {eventCodes} = require('./../../../utils/events-classification');
+const {notificationTypes} = require('./../../../utils/notification-constants');
 const ChapterModel = require('../../../models/chapter');
 const RatingModel = require('../../../models/rating');
 const CommentModel = require('../../../models/comment');
@@ -30,8 +30,8 @@ exports.seed = async (knex)=>{
     .map((comment) => {
       const chapter = chapters.find((p) => p.id === comment.chapterId);
       const event_type = comment.parent_id === 'false' ?
-        eventCodes.chapterComment.created :
-        eventCodes.chapterComment.ReplyCreated;
+        notificationTypes.comment.created :
+        notificationTypes.comment.replied;
 
       return {
         title: 'Your chapter just received a new comment',
@@ -53,15 +53,12 @@ exports.seed = async (knex)=>{
   const notificationRatings = ratings.slice(0, maxSeed) //we only need a portion
     .map((rating) => {
       const chapter = chapters.find((p) => p.id === rating.chapterId);
-      const event_type = rating.reaction === 'like' ?
-        eventCodes.rating.positiveCreated :
-        eventCodes.rating.negativeCreated;
 
       return {
         title: 'User rated your chapter ' + faker.random.arrayElement(['🎆', '🎉', '✳']),
         body: faker.lorem.words(),
         item_id: chapter.id,
-        event_type,
+        event_type:notificationTypes.rating.created,
         model: 'rating',
         recipient_id: chapter.creatorId,
         read: faker.datatype.boolean(),
@@ -79,7 +76,7 @@ exports.seed = async (knex)=>{
         title: 'Your chapter has been approved',
         body: faker.lorem.words(),
         item_id: chapter.id,
-        event_type: eventCodes.chapter.approved,
+        event_type: notificationTypes.chapter.approved,
         model: 'chapter',
         recipient_id: chapter.creatorId,
         read: faker.datatype.boolean(),
@@ -99,7 +96,7 @@ exports.seed = async (knex)=>{
         title: 'Your chapter has been verified',
         body: faker.lorem.words(),
         item_id: chapter.id,
-        event_type: eventCodes.chapter.verified,
+        event_type: notificationTypes.chapter.verified,
         model: 'chapter',
         recipient_id: chapter.creatorId,
         read: faker.datatype.boolean(),

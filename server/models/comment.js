@@ -1,5 +1,7 @@
 const Model = require('./_model');
 const knex = require('../db/db');
+const { SHooksEventEmitter } = require('../utils/event-emitter');
+const { events } = require('../utils/storage-hooks-events');
 
 class Comment extends Model {
   static get tableName() {
@@ -70,6 +72,33 @@ class Comment extends Model {
         builder.select('id', 'creator_id', 'chapter_id', 'comment', 'createdAt', 'updatedAt');
       }
     };
+  }
+
+  async $afterInsert(queryContext) {
+    await super.$afterInsert(queryContext);
+
+    if ((this.parentId === 'false' || !this.parentId) && SHooksEventEmitter.listenerCount(events.user.comment.countOnCreate) > 0) {
+      const results = await Comment.query(queryContext.transaction)
+        .count('id')
+        .where('parent_id', 'false')
+        .where('creator_id', this.creatorId);
+
+      SHooksEventEmitter.emit(events.user.comment.countOnCreate, {
+        total: results[0].count,
+        creatorId: this.creatorId
+      });
+    }
+    if (this.parentId && this.parentId !== 'false' && SHooksEventEmitter.listenerCount(events.user.reply.countOnCreate) > 0) {
+      const results = await Comment.query(queryContext.transaction)
+        .count('id')
+        .whereNot('parent_id', 'false')
+        .where('creator_id', this.creatorId);
+
+      SHooksEventEmitter.emit(events.user.reply.countOnCreate, {
+        total: results[0].count,
+        creatorId: this.creatorId
+      });
+    }
   }
 }
 

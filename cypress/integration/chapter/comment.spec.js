@@ -52,7 +52,7 @@ describe('Chapter comments when authenticated', () => {
         cy.get('#chapter .padded form button[type="submit"]')
             .click();
 
-        cy.get('.ember-notify.ember-notify-show.success .message')
+        cy.get('.ember-notify.ember-notify-show.alert-success .message')
             .should('be.visible')
 
 

@@ -1,20 +1,28 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { log } from '../../utils/logger';
 
 export default class NavMenuNotificationDropdownComponent extends Component {
+  @service store;
+  @service router;
+
+  get notifications() {
+    return this.store.peekAll('notification');
+  }
+
   get unreadNotificationsCount() {
-    if (!this.args.notifications) {
+    if (!this.notifications) {
       return 0;
     }
-    return this.args.notifications.filter((n) => n.read === false).length;
+    return this.notifications.filter((n) => n.read === false).length;
   }
 
   @action
   async onNotificationSelect(model, dropdown) {
     if (model.read === true) {
-      if (model.route) {
-        this.router.transitionTo(model.route, model.itemId);
+      if (model.url) {
+        this.router.transitionTo(model.url);
       }
       dropdown.closeDropdown();
       return;
@@ -26,8 +34,8 @@ export default class NavMenuNotificationDropdownComponent extends Component {
 
       dropdown.closeDropdown();
 
-      if (model.route) {
-        this.router.transitionTo(model.route, model.itemId);
+      if (model.url) {
+        this.router.transitionTo(model.url);
       }
     } catch (e) {
       log.error('Notifications', e);

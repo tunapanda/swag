@@ -2,6 +2,8 @@ const Model = require('./_model');
 const knex = require('../db/db');
 const chapterSchema = require('../db/json_schema/chapterSchema');
 const search = require('../utils/search');
+const { SHooksEventEmitter } = require('../utils/event-emitter');
+const { events } = require('../utils/storage-hooks-events');
 
 class Chapter extends Model {
   static get tableName() {
@@ -96,6 +98,40 @@ class Chapter extends Model {
         builder.select('id', 'name');
       }
     };
+  }
+
+  async $afterUpdate(queryContext) {
+    await super.$afterUpdate(...arguments);
+
+    if (this.status === 'published' && this.approved !== true && // a chapter can only be published before approval?
+      SHooksEventEmitter.listenerCount(events.user.chapter.countOnPublished) > 0) {
+
+      const results = await Chapter.query(queryContext.transaction)
+        .count('id')
+        .where('status', 'published')
+        .where('creator_id', this.creatorId);
+
+      SHooksEventEmitter.emit(events.user.chapter.countOnPublished, {
+        total: results[0].count,
+        creatorId: this.creatorId
+      });
+
+    }
+
+    if (this.status === 'published' && this.approved === true && // a chapter can only be approved if already published?
+      SHooksEventEmitter.listenerCount(events.user.chapter.countOnApproved) > 0) {
+
+      const results = await Chapter.query(queryContext.transaction)
+        .count('id')
+        .where('approved', true)
+        .where('creator_id', this.creatorId);
+
+      SHooksEventEmitter.emit(events.user.chapter.countOnApproved, {
+        total: results[0].count,
+        creatorId: this.creatorId
+      });
+
+    }
   }
 }
 

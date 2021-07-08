@@ -15,10 +15,9 @@ const router = new Router({
  * @apiGroup Reactions
  * @apiPermission none
  *
- * @apiParam (Optional Params) {String} reaction.id Chapter Id
- * @apiParam (Optional Params) {String} reaction[reaction] Reaction type (like|dislike|whatever).
- * @apiParam (Optional Params) {String} reaction[chapter_id] Chapter id.
- * @apiParam (Optional Params) {String} reaction[user_id] Authenticated user id
+ * @apiParam (Query Params) {String} [reaction] Reaction type (like|dislike).
+ * @apiParam (Query Params) {String} [chapterId] Chapter id.
+ * @apiParam (Query Params) {String} [userId] Authenticated user id
  *
  * @apiSuccess {Object[]} reaction list
  * @apiSuccess {String} reaction.id Reaction id
@@ -95,11 +94,6 @@ router.get('/:id', requireAuth, async ctx => {
  * @apiVersion 0.4.0
  *
  * @apiSampleRequest off
- *
- * @apiParam (Optional Params) {String} reaction[id] Chapter Id
- * @apiParam (Optional Params) {String} reaction[reaction] Reaction type (like|dislike|whatever).
- * @apiParam (Optional Params) {String} reaction[chapter_id] Chapter id.
- * @apiParam (Optional Params) {String} reaction[user_id] Authenticated user id
  *
  *
  * @apiSampleRequest off

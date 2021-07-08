@@ -1,9 +1,9 @@
 const jwToken = require('jsonwebtoken');
 
-const {secret} = require('./middleware/jwt');
-const { socketChannel, role} = require('./utils/socket-constants');
-const {eventCodes} = require('./utils/events-classification');
-const {eventEmitter} = require('./utils/event-emitter');
+const {secret} = require('../middleware/jwt');
+const { socketChannel, role} = require('../utils/socket-constants');
+const {events} = require('../utils/socket-events');
+const { socketEventEmitter } = require('../utils/event-emitter');
 
 module.exports = (io) => {
 
@@ -22,7 +22,7 @@ module.exports = (io) => {
     if (exp < Date.now().valueOf() / 1000) {
       socket.join([socketChannel.anonymous, socketChannel.learners]);
       //push token expired event
-      socket.emit(eventCodes.session.expired,{message:'You session has expired'});
+      socket.emit(events.user.session.expired,{message:'You session has expired'});
       return;
     }
 
@@ -44,12 +44,32 @@ module.exports = (io) => {
 
   }
 
+  function socketsByUserId(userId) {
+    if(!userId){
+      return [];
+    }
+
+    return Array.from(io.sockets.sockets.values())
+      .filter((socket)=>socket.data.id===userId);
+  }
+
+  function emitDataToUserId(userId,event,data) {
+    if(!userId||!event){
+      return false;
+    }
+
+    const sockets = socketsByUserId(userId);
+    if(sockets && sockets.length>0){
+      sockets.map((socket)=>socket.emit(event,data));
+      return true;
+    }
+    return false;
+  }
 
   io.on('connection', (socket) => {
 
     initConnectedSocket(socket,socket.handshake.auth);
-
-    socket.on(eventCodes.user.roleChange, (payload) => {
+    socket.on(events.user.account.roleChange, (payload) => {
 
       //remove user from all rooms/channels they are in first
       Array.from(socket.rooms).map((room)=>{
@@ -65,24 +85,43 @@ module.exports = (io) => {
   });
 
   /**
+   * On notification create, push it to the recipient
+   */
+
+  socketEventEmitter.on(events.user.notification.created,(notification)=>{
+    let maxAttempts=3;
+    const delayBeforeRetry=10000; //10 seconds
+
+    (function x(){
+      const sent =emitDataToUserId(notification.recipientId,events.user.notification.created,notification);
+      if(!sent && maxAttempts>0){
+        maxAttempts -= 1;
+        setTimeout(x,delayBeforeRetry);
+      }
+    })();
+
+  });
+
+
+  /**
      * on chapter publish, push the update to all moderators
      */
-  eventEmitter.on(eventCodes.chapter.published, (payload) => {
-    io.to(socketChannel.moderators).emit(eventCodes.chapter.published, payload);
+  socketEventEmitter.on(events.user.chapter.published, (payload) => {
+    io.to(socketChannel.moderators).emit(events.user.chapter.published, payload);
   });
 
   /**
-     * on approved chapter delete, push the update to all learners
+     * on chapter delete, push the update to all learners
      */
-  eventEmitter.on(eventCodes.approvedChapter.deleted, (payload) => {
-    io.to(socketChannel.learners).emit(eventCodes.approvedChapter.deleted, payload);
+  socketEventEmitter.on(events.user.chapter.deleted, (payload) => {
+    io.to(socketChannel.learners).emit(events.user.chapter.deleted, payload);
   });
 
   /**
    * on comment, push the update to all learners
    */
-  eventEmitter.on(eventCodes.chapterComment.created, (payload) => {
-    io.to(socketChannel.learners).emit(eventCodes.chapterComment.created, payload);
+  socketEventEmitter.on(events.user.comment.created, (payload) => {
+    io.to(socketChannel.learners).emit(events.user.comment.created, payload);
   });
   return io;
 };

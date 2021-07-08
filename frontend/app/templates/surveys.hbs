@@ -1,0 +1,22 @@
+<div class="p-4 surveys-page">
+  <div class="breadcrumbs d-flex align-items-center">
+    <LinkTo @route="index">
+      {{svg-jar "home_black_24dp"}}
+    </LinkTo>
+    <p class="m0">
+      <LinkTo @route="index">{{t "surveys.breadcrumb.home"}}</LinkTo>
+      <span class="divider">/</span>
+      <span>{{t "surveys.breadcrumb.surveys"}}</span>
+      <span class="divider">/</span>
+      <span class="survey-name">{{this.model.name}}</span>
+    </p>
+  </div>
+  <hr>
+
+  <div class="main-survey-container d-flex justify-content-center">
+
+    {{html-safe this.model.surveyEmbed}}
+
+  </div>
+
+</div>

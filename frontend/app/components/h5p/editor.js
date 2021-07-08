@@ -67,9 +67,8 @@ export default class H5pEditorComponent extends Component {
       '.h5p-editor-component-root  .h5p-create iframe'
     );
 
-    const editorSearchInput = editorIframe?.contentWindow.document.querySelector(
-      '.h5p-hub'
-    );
+    const editorSearchInput =
+      editorIframe?.contentWindow.document.querySelector('.h5p-hub');
 
     if (!editorIframe && !this.elementVisible(editorSearchInput)) {
       setTimeout(() => this.pollUntilIframeIsDrawn(elem), 40);

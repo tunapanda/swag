@@ -18,30 +18,23 @@
   padding: 1.3em;
 }
 
-.alert {
-  margin-top: 1em;
-  display: flex;
-  border-style: solid;
-
-  background-color: #FFEDF0;
-  border-color: #FDD6DD;
-  border-width: 1px;
-  justify-content: space-around;
-  color: #D56679;
-
-
-  .alert-text {
-    font-size: 13px;
-    margin: 3px;
-
+.ember-notify {
+  &.alert {
+    &.alert-success ,
+    &.alert-success .close{
+      color: white;
+      background-color: #4caf50;
+      font-weight: 400;
+      opacity: 1;
+    }
+    &.alert-danger ,
+    &.alert-danger .close{
+      color: white;
+      background-color: #f44336;
+      font-weight: 400;
+      opacity: 1;
+    }
   }
-
-  .alert-icon {
-    padding-right: 7px;
-    display: flex;
-    align-content: center;
-  }
-
 }
 
 .chapter-filters-section {

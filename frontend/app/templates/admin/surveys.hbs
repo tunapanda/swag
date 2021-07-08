@@ -1,0 +1,151 @@
+<div class="survey-manage-page">
+  <span {{did-insert this.initSurveyFormVisibility}}></span>
+  <h1 class="title">{{t "admin.surveys.titles.manage"}}</h1>
+  <hr>
+
+  <div class="utilities-header">
+    <p class="summary pr-3">{{this.paginationSummary}}</p>
+
+    <div class="survey-search search-form">
+      <Input type="search" class="search-input form-control" @value={{this.surveySearchTerm}}
+             placeholder={{t "admin.surveys.labels.search_placeholder"}}/>
+      <span class="search-icon {{if this.surveySearchTerm 'd-none'}}"></span>
+    </div>
+    <div class="sort-form sort-surveys">
+      <BsDropdown class="sort-dd custom-dd" as |dd|>
+        <dd.toggle>{{t "admin.surveys.buttons.sort"}} {{this.sortBy.title}} <span class="caret"></span></dd.toggle>
+        <dd.menu class="dropdown-menu-right" as |menu|>
+          <div class="header">
+            {{t "admin.surveys.labels.sort_options"}}
+          </div>
+          <hr>
+          <menu.item>
+            <button type="button" class="btn w-100 menu-item btn-sort-status"
+              {{on "click" (fn this.setSortBy (t "admin.surveys.labels.sort_by_status") "status")}}>
+              {{t "admin.surveys.labels.sort_by_status"}}
+            </button>
+          </menu.item>
+          <menu.item>
+            <button type="button" class="btn w-100 menu-item btn-sort-expiry"
+              {{on "click" (fn this.setSortBy (t "admin.surveys.labels.sort_by_expiry") "expiry")}}>
+              {{t "admin.surveys.labels.sort_by_expiry"}}
+            </button>
+          </menu.item>
+          <menu.item>
+            <button type="button" class="btn w-100 menu-item btn-sort-name"
+              {{on "click" (fn this.setSortBy (t "admin.surveys.labels.sort_by_name") "name")}}>
+              {{t "admin.surveys.labels.sort_by_name"}}
+            </button>
+          </menu.item>
+        </dd.menu>
+      </BsDropdown>
+    </div>
+
+  </div>
+  <hr class="horizontal-divider">
+
+  <div class="surveys-list">
+    <div class="create-card {{if this.createFormVisible 'active'}}" role="button"
+      {{on "click" (fn this.toggleSFormVisibility undefined)}}>
+          <span class="content">
+            {{svg-jar "plus-circle" height="25" width="25" stroke="white"}}
+            {{t "admin.surveys.buttons.new"}}
+          </span>
+    </div>
+    {{#each this.surveys  as |survey|}}
+      <div class="survey-card " id="survey-card-{{survey.id}}">
+        <div class="col-12 status">
+          <span class="status-badge {{exec this.statusColor survey}}">
+            {{survey.status}}
+          </span>
+        </div>
+        <div class="col-12 name">
+          {{title-case survey.name}}
+        </div>
+        <div class="col-12 validity">
+          {{format-date survey.createdAt day="numeric" month="numeric" year="numeric" locale="en-GB"}}
+          -
+          {{format-date survey.expiry  day="numeric" month="numeric" year="numeric"  locale="en-GB"}}
+        </div>
+        <div class="col-12 description">
+          {{survey.description}}
+        </div>
+        <div class="footer d-flex justify-content-between">
+          <div class="left ">
+            <BsDropdown class="dd-actions-menu custom-dd" as |dd|>
+              <dd.toggle>{{svg-jar "horizontal-menu-dots" height="16" }} </dd.toggle>
+              <dd.menu as |menu|>
+                <div class="header">
+                  {{t "admin.surveys.labels.survey_options"}}
+                </div>
+                <hr>
+                {{#if (exec this.canPublishSurvey  survey)}}
+                  <menu.item>
+                    <button type="button" class="btn w-100 menu-item  btn-publish"
+                      {{on "click" (fn this.updateSurveyStatus survey this.surveyStatus.published)}}>
+                      {{t "admin.surveys.buttons.publish"}}
+                    </button>
+                  </menu.item>
+                {{/if}}
+                {{#if (exec this.canUnPublishSurvey survey )}}
+                  <menu.item>
+                    <button type="button" class="btn w-100 menu-item btn-unpublish"
+                      {{on "click" (fn this.updateSurveyStatus survey this.surveyStatus.unpublished)}}>
+                      {{t "admin.surveys.buttons.unpublish"}}
+                    </button>
+                  </menu.item>
+                {{/if}}
+                {{#if (exec this.canArchiveSurvey survey)}}
+                  <menu.item>
+                    <button type="button" class="btn w-100 menu-item  btn-archive"
+                      {{on "click" (fn this.updateSurveyStatus survey this.surveyStatus.archived)}}>
+                      {{t "admin.surveys.buttons.archive"}}
+                    </button>
+                  </menu.item>
+                {{/if}}
+
+                <menu.item>
+                  <button type="button" class="btn w-100 menu-item  btn-edit"
+                    {{on "click" (fn this.toggleSFormVisibility survey) }}>
+                    {{t "admin.surveys.buttons.edit"}}
+                  </button>
+                </menu.item>
+
+                <menu.item>
+                  <button type="button" class="btn w-100 menu-item  btn-delete"
+                    {{on "click" (fn this.deleteSurvey survey) }}>
+                    {{t "admin.surveys.buttons.delete"}}
+                  </button>
+                </menu.item>
+              </dd.menu>
+            </BsDropdown>
+          </div>
+          <div class="right">
+            <LinkTo @route="surveys" @model={{survey}} target="_blank">
+              {{t 'admin.surveys.buttons.view_survey'}}
+              <span class="link-icon"> {{svg-jar "chevron-circle-right" height="16" width="16" fill="grey" }}</span>
+            </LinkTo>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+    <div class="survey-form-section pt-4 pb-4 {{if this.createFormVisible '' 'd-none'}} ">
+      {{#if this.surveyModel.id}}
+        <div class="form-header"  {{did-insert  this.setSurveyForm}} tabindex="0">
+          {{t "admin.surveys.labels.edit_form_title"}}
+        </div>
+      {{else}}
+        <div class="form-header"  {{did-insert  this.setSurveyForm}} tabindex="0">
+          {{t "admin.surveys.labels.create_form_title"}}
+        </div>
+      {{/if}}
+      <div class="card">
+        <div class="card-body col-lg-11">
+          <Admin::SurveyForm @model={{this.surveyModel}} @saveSurveyForm={{this.saveSurveyForm}}>
+          </Admin::SurveyForm>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

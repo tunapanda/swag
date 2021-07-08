@@ -69,37 +69,6 @@ $palette: (
 .badges .badges-homepage {
   .badges-section .submenu-section {
 
-    .badges-search {
-      position: relative;
-      margin-top: -5px;
-
-      .search-input {
-        border-radius: 18px;
-        padding: .275rem .45rem;
-        height: initial;
-
-        &::placeholder {
-          font-size: 14px;
-        }
-      }
-
-      .search-icon {
-        position: absolute;
-        top: 7px;
-        right: 16px;
-        width: 18px;
-        height: 18px;
-        border-width: 1px;
-
-        &:after {
-          left: 18px;
-          top: 10px;
-          width: 1px;
-          height: 10px;
-        }
-      }
-    }
-
     .dropdown-toggle {
       color: map-get($palette, black);
     }

@@ -1,4 +1,3 @@
-import "cypress-file-upload";
 
 Cypress.Commands.add('login', function () {
   cy.fixture('user').then(user => {
@@ -13,16 +12,14 @@ Cypress.Commands.add('login', function () {
       .its('body')
       .then(res => {
         this.token = res.token;
+        const rawData =this.token.split('.')[1];
+        const data =rawData?JSON.parse(atob(rawData)):'';
         window.localStorage.setItem('ember_simple_auth-session', JSON.stringify({
           "authenticated": {
             "authenticator": "authenticator:jwt",
             "token": res.token,
             "exp": Math.floor(new Date().getTime() / 1000) + 1000 * 60 * 60,
-            "tokenData": {
-              "id": user.id,
-              "iat": Math.floor(new Date().getTime() / 1000),
-              "exp": Math.floor(new Date().getTime() / 1000) + 1000 * 60 * 60
-            }
+            "tokenData": data
           }
         }));
       });
@@ -132,4 +129,30 @@ Cypress.Commands.add('triggers', (queryParams = {}) => {
     })
         .its('body.trigger')
         .then((triggers) => triggers);
+});
+
+Cypress.Commands.add('surveys', (queryParams = {}) => {
+    const qs = Object.keys(queryParams).reduce((acc, key) => {
+        acc += `${key}=${queryParams[key]}&`;
+        return acc;
+    }, '')
+
+    let headers = {'Accept': `application/json`}
+
+    // check if user is authenticated
+    const session = window.localStorage.getItem('ember_simple_auth-session');
+    if (session) {
+        const parsed = JSON.parse(session);
+        if (parsed.authenticated && parsed.authenticated.token) {
+            headers = {...headers, 'Authorization': `Bearer ${parsed.authenticated.token}`}
+        }
+    }
+
+    return cy.request({
+        method: 'GET',
+        url: `/api/v1/surveys?${qs}`,
+        headers: headers
+    })
+        .its('body.surveys')
+        .then((surveys) => surveys);
 });

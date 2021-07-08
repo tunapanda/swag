@@ -3,8 +3,6 @@ const Router = require('koa-router');
 const Comment = require('../models/comment');
 const { requireAuth, grantAccess } = require('../middleware/permController');
 const profaneCheck = require('../utils/profaneCheck');
-const {eventEmitter} =require('./../utils/event-emitter');
-const {eventCodes} = require('./../utils/events-classification');
 
 const router = new Router({
   prefix: '/comments'
@@ -178,9 +176,6 @@ router.post('/', requireAuth, async ctx => {
   ctx.assert(comment, 401, 'Something went wrong');
   ctx.status = 201;
   ctx.body = { comment };
-
-  eventEmitter.emit(eventCodes.chapterComment.created,comment);
-
 
 });
 

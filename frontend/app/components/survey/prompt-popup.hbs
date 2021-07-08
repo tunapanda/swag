@@ -1,0 +1,20 @@
+<BsModal @open={{this.showSurveyFillPrompt}} @closeButton={{true}}
+         class="survey-fill-prompt-popup" @position="center" @onHide={{this.hideSurveyFillPrompt}} as |modal|>
+  <modal.header class="modal-header"></modal.header>
+  <modal.body class="modal-body">
+
+    {{#if this.survey}}
+      <div class="title pt-1">{{this.survey.name}} </div>
+      <div class="description pt-4 pb-4"> {{this.survey.description}} </div>
+      <div class="subtitle pb-4"> {{t "surveys.popup.google_prompt"}} </div>
+      <button type="button" role="button" class="btn btn-block btn-link" {{on "click" this.transitionToSurveyPage}}>
+        {{t "surveys.popup.buttons.ok"}}
+      </button>
+    {{/if}}
+
+    <BsButton {{on "click" modal.close}} @type="default" class="btn btn-later">
+      {{t "surveys.popup.buttons.no"}}
+    </BsButton>
+  </modal.body>
+</BsModal>
+<span {{did-insert this.notificationEventIntercept}}></span>

@@ -1,15 +1,25 @@
 {{#if (or this.isAdminRoute (eq this.route "teach.login"))}}
   <HeadLayout />
   {{outlet}}
+
+  <span {{did-insert this.loadUserNotifications this.me.isAuthenticated}}
+    {{did-update this.loadUserNotifications this.me.isAuthenticated}}></span>
+
 {{else if (not-eq this.route "embed")}}
+
+  <span {{did-insert this.loadUserNotifications this.me.isAuthenticated}}
+  {{did-update this.loadUserNotifications this.me.isAuthenticated}}></span>
+
   <HeadLayout/>
-  <MainHeader @isTeach={{false}} @logout={{this.logout}} @notifications={{this.model}} />
+  <MainHeader @isTeach={{false}} @logout={{this.logout}} />
   <div class="container-fluid m-0 p-0 h-100 ">
     {{outlet}}
   </div>
-  <EmberNotify @closeAfter={{4000}} />
+  <EmberNotify  @messageStyle="bootstrap" @closeAfter={{30000}} />
   <AuthPrompt />
   {{!-- <VerifyEmailPrompt /> --}}
+  <Survey::PromptPopup>
+  </Survey::PromptPopup>
 {{else }}
 
   {{outlet}}

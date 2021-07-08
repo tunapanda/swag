@@ -7,35 +7,44 @@
     <a class="dropdown-item header-title" href="#">{{t "main_navbar.notifications.title"}}</a>
     <ddm.divider class="DropdownMenuDivider"></ddm.divider>
 
-    {{#if @notifications}}
-    <div class="notification-items">
-      {{#each @notifications as |obj|}}
-      <div class="dropdown-item notification-item d-flex {{if obj.read " read" "unread" }}" href="#">
-        <div class="notification-container row" role="button" {{on "click" (fn this.onNotificationSelect obj dd)}}>
-          <div class="col-12 title">
-            {{obj.title}}
+    {{#if this.notifications}}
+      <div class="notification-items">
+        {{#each this.notifications as |obj|}}
+          <div class="dropdown-item notification-item d-flex {{if obj.read " read" "unread" }} pl-0" href="#">
+            <div class="notification-container d-flex justify-content-start" role="button" {{on "click" (fn this.onNotificationSelect obj dd)}}>
+              <div class="icon-container">
+                {{#if obj.svgIcon}}
+                  {{svg-jar obj.svgIcon height="34" width="34"}}
+                {{else}}
+                  {{#if obj.iconUrl}}
+                    <img src="{{obj.iconUrl}}" alt="" role="presentation">
+                  {{/if}}
+                {{/if}}
+              </div>
+              <div class="main-details">
+                <div class="col-12 title">
+                  {{obj.title}}
+                </div>
+                <div class="col-12 time">
+                  {{relative-time obj.createdAt}}
+                </div>
+              </div>
+            </div>
+            <div class="notification-actions d-flex">
+              <button type="button" class="btn-delete" {{on "click" (fn this.deleteNotification obj)}}>
+                {{svg-jar "close" width="15" height="15"}}
+              </button>
+              <button type="button" class="btn-toggle-read-status" {{on "click"
+                                                                        (fn this.toggleNotificationStatus obj )}}>
+                <span class="circle"></span>
+              </button>
+            </div>
           </div>
-          <div class="col-12 body">
-            {{obj.body}}
-          </div>
-          <div class="col-12 time">
-            {{relative-time obj.createdAt}}
-          </div>
-        </div>
-        <div class="notification-actions d-flex">
-          <button type="button" class="btn-delete" {{on "click" (fn this.deleteNotification obj)}}>
-            {{svg-jar "close" width="15" height="15"}}
-          </button>
-          <button type="button" class="btn-toggle-read-status" {{on "click" (fn this.toggleNotificationStatus obj )}}>
-            <span class="circle"></span>
-          </button>
-        </div>
+        {{/each}}
       </div>
-      {{/each}}
-    </div>
 
     {{else}}
-    <div class="dropdown-item notification-item empty-state">{{t "main_navbar.notifications.empty"}}</div>
+      <div class="dropdown-item notification-item empty-state">{{t "main_navbar.notifications.empty"}}</div>
     {{/if}}
   </dd.menu>
 </BsDropdown>

@@ -8,7 +8,8 @@ export default {
   email: [validateFormat({ type: 'email' }), validatePresence(true)],
   contactNumber: [
     validateFormat({
-      regex: /^\s*(?:\+?(\d{1,3}))?[-. ]*(\d{3})[-. ]*(\d{3})[-. ]*(\d{2,4})(?: *x(\d+))?\s*$/,
+      regex:
+        /^\s*(?:\+?(\d{1,3}))?[-. ]*(\d{3})[-. ]*(\d{3})[-. ]*(\d{2,4})(?: *x(\d+))?\s*$/,
       allowBlank: true,
     }),
   ],

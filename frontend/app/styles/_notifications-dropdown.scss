@@ -4,7 +4,7 @@ $palette: (
   primary:#F57010,
   red: #EA0606,
   white: #FFFF,
-  blue: #0052CCFF,
+  jungleGreen: #32A583
 );
 
 .notifications-dropdown {
@@ -12,8 +12,9 @@ $palette: (
     position: relative;
     outline: none;
     box-shadow: none;
-    &:hover{
-      color:  map-get($palette, white) !important;
+
+    &:hover {
+      color: map-get($palette, white) !important;
     }
   }
 
@@ -66,7 +67,8 @@ $palette: (
         }
       }
     }
-    .empty-state{
+
+    .empty-state {
       font-weight: 300;
     }
 
@@ -74,11 +76,25 @@ $palette: (
 
   .notification-item {
     .notification-container {
+      .icon-container {
+        padding-left: 9px;
+        padding-right: 9px;
+        max-width: 48px;
+        max-height: 48px;
+        display: flex;
+        align-items: center;
+        img {
+          height: auto;
+          max-width: 100%;
+        }
+      }
+
       .title {
         font-size: 14px;
         font-weight: 400;
         cursor: pointer;
         padding-right: 0;
+        padding-left: 0;
       }
 
       .body {
@@ -88,15 +104,18 @@ $palette: (
       }
 
       .time {
-        padding-left: 1.5rem;
         font-size: small;
         color: #b3bac5;
         font-weight: 600;
         padding-right: 0;
+        padding-left: 0;
       }
     }
 
     .notification-actions {
+      flex-grow: 1;
+      justify-content: flex-end;
+
       .btn-delete {
         display: flex;
         opacity: 0;
@@ -147,7 +166,7 @@ $palette: (
     .notification-actions {
       .btn-toggle-read-status {
         border: solid 4px #ebecf0;
-        background-color: map-get($palette, blue);
+        background-color: map-get($palette, jungleGreen);
       }
     }
   }

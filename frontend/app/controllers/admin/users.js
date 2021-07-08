@@ -130,11 +130,8 @@ export default class AdminUsersController extends Controller {
   }
 
   get paginationSummary() {
-    const {
-      recordsCount,
-      currentPageStart,
-      currentPageEnd,
-    } = this.pageNumericSummary;
+    const { recordsCount, currentPageStart, currentPageEnd } =
+      this.pageNumericSummary;
 
     if (recordsCount <= this.showPerPage) {
       return `Showing All Users`;

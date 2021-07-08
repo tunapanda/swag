@@ -6,6 +6,7 @@ sidenav:
   badges: Badges
   manage_badges: Manage Badges
   badge_users: Users & Badges
+  surveys: Surveys
 
 badges:
   titles:
@@ -15,38 +16,38 @@ badges:
     popup: How to earn this badge
 
   buttons:
-    create: Create new badge
+    create: Create New Badge
     details: Details
     view_all: See All
-    bulk_action:  Bulk action
-    delete_all:  Delete all
-    new: New badge
-    earning: How to earn
+    bulk_action:  Bulk Action
+    delete_all:  Delete All
+    new: New Badge
+    earning: How to Earn
     upload_icon: SELECT FILE
     save: Save
     unpublish: Unpublish
     publish: Publish
-    delete: Delete badge
-    edit: Edit badge
+    delete: Delete Badge
+    edit: Edit Badge
 
   labels:
     badge_create_prompt: Hi {name},would you like to create a new badge today?
     badges_total: Number of Badges
     badges_earned: Badges Earned
-    upload_icon: Upload bagde icon
-    change_icon: Change the bagde icon
+    upload_icon: Upload Bagde Icon
+    change_icon: Change the Bagde Icon
     options: Options
     search_placeholder: Search Badge
 
     #below are form related values
     trigger: Trigger
-    trigger_placeholder: Select trigger
+    trigger_placeholder: Select Trigger
     name: Name
     name_placeholder: Name of the badge
-    description: How to earn
+    description: How to Earn
     description_placeholder: Describe how to earn the badge
-    expiry_date: Date to expire
-    frequency: No. of times
+    expiry_date: Date to Expire
+    frequency: No. of Times
     frequency_placeholder: No. of times one should trigger to earn the badge
     points: Points
     points_placeholder: Points associated with the badge
@@ -56,10 +57,10 @@ badges:
     reminder_message_placeholder: Create 4 more chapters to unlock Ninja badge and earn 1000 points
   tables:
     name: Name
-    description: How to earn
-    expiry: Expiry date
+    description: How to Earn
+    expiry: Expiry Date
     status: Status
-    users_earned:  Users earned
+    users_earned:  Users Earned
     action: Action
 
 users:
@@ -72,16 +73,77 @@ users:
     last_login: Last Login
     role: Role
     status: Status
-    action: Action    
+    action: Action
 
   details:
     profile_image_alt: Profile Picture
     chapters_created: Chapters Created
     chapters_created_alt: chapters created icon
     completed_chapters: Completed Chapters
-    completed_chapters_alt: completed chapters icon 
+    completed_chapters_alt: completed chapters icon
     points_accumulated: Points Accumulated
     points_accumulated_alt: points accumulated icon
     badges_earned: Badges Earned
     badges_earned_alt: badges earned icon
     details_button: Details
+surveys:
+  titles:
+    manage: Survey Management
+    all_surveys: All Surveys
+  buttons:
+    new: New Survey
+    sort: Sort by
+    view_survey: View Survey
+    unpublish: Unpublish
+    publish: Publish
+    delete: Delete Survey
+    edit: Edit Survey
+    archive: Archive Survey
+    save: Save
+
+  labels:
+    search_placeholder: Search Survey
+    survey_options: Options
+    edit_form_title: Edit Survey
+    create_form_title: Create New Survey
+
+    sort_options: Sort By
+    sort_by_status: Status
+    sort_by_name: Name
+    sort_by_expiry: Expiry
+    #below are form related values
+    trigger: Trigger
+    trigger_placeholder: Select trigger
+    name: Survey Name
+    name_placeholder: Name of the survey
+    expiry_date: Expiry Date
+    frequency: No. of Times
+    frequency_placeholder: Trigger action count to fill survey
+    embed: Embed Code/Link
+    embed_placeholder: Survey Embed Code
+    description: Display Message
+    description_placeholder: We want to provide you the best experience, so your feedback is very valuable to us
+
+    #below are notifications related values
+    delete_confirmation: Are you sure you want to delete the survey?
+    publish_confirmation: Are you sure you want to publish the survey?
+    archive_confirmation: Are you sure you want to archive the survey?
+    unpublish_confirmation: Are you sure you want to un-publish the survey?
+    status_updated: Survey status updated successfully
+    survey_updated: Survey details updated successfully
+    survey_created: Survey created successfully
+    survey_deleted: Survey deleted successfully
+    survey_deletion_error: We could not delete the survey. Unexpected error occurred
+    survey_update_error: We could not update the survey. Unexpected error occurred
+    survey_create_error: We could not save the survey details. Unexpected error occurred
+
+  help:
+    what_trigger: An action a user has to perform to qualify for the survey
+    what_frequency: Number of times the user has to perform the action
+    what_expiry: This survey will not be available after expiry date
+    what_embed: >-
+                A Google survey form HTML embed code (iframe).<br>
+                For assistance on how to get the Google form embed code,
+                click <a target="_blank" rel="noreferrer" href="https://support.google.com/a/users/answer/9308623?hl=en">here</a>
+    what_message: A prompt on importance of filling the survey
+

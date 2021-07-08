@@ -1,0 +1,73 @@
+$palette: (
+  studio: #5A47AD,
+  windsor: #4E0B80,
+  white: #FFFF,
+  primary: #F57010,
+  gray30:#3F484D,
+
+);
+
+.surveys-page {
+
+  .breadcrumbs {
+    span.divider {
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+  }
+}
+
+.survey-fill-prompt-popup {
+  .modal-dialog {
+    transform: translate(0, -70px) !important;
+  }
+
+
+  .modal-header {
+    border: none;
+    padding-bottom: 0;
+
+    .close {
+      opacity: 1;
+      color: map-get($palette, gray30);
+    }
+  }
+
+  .modal-body {
+    text-align: center;
+    padding-top: 0;
+
+    .title {
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      font-weight: 600;
+      padding-bottom: 15px;
+    }
+
+    .btn-link {
+      font-size: 19px;
+      font-weight: 600;
+      color: map-get($palette, white);
+      padding-top: 12px;
+      padding-bottom: 12px;
+      background-color: map-get($palette, primary);
+      text-decoration: none;
+    }
+
+    button.btn-later {
+      font-size: 19px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      margin-top: 8px;
+      &:hover{
+        display: block;
+        width: 100%;
+        border: solid 1px;
+      }
+    }
+  }
+}

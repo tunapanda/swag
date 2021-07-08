@@ -56,6 +56,9 @@ export default class AdminBadgesManageController extends Controller {
   @action
   async deleteBadge(badge) {
     if (window.confirm('Are you sure you want to delete the badge?')) {
+      if (this.editItem && badge.id === this.editItem) {
+        this.editItem = null;
+      }
       await badge.destroyRecord();
     }
   }

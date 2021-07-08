@@ -3,18 +3,6 @@ const { faker, seed_number } = require('../_seeds');
 exports.seed = async (knex) => {
   // Deletes ALL existing entries
   await knex('badges').del();
-  await knex('badge_triggers').del();
-
-  const fakeBadgeTriggers = [];
-  const triggers = ['chapter_create', 'chapter_publish', 'comment_create','comment_reply'];
-
-  for (let index = 0; index < triggers.length; index++) {
-    fakeBadgeTriggers.push({
-      description: faker.lorem.words(),
-      name: triggers[index]
-    });
-  }
-  await knex('badge_triggers').insert(fakeBadgeTriggers);
 
   const triggerIds = await knex('badge_triggers').pluck('id');
 

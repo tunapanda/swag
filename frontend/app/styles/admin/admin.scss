@@ -13,6 +13,44 @@ gray85: #FAFDFF
     overflow: auto;
   }
 
+  .search-form {
+    position: relative;
+    margin-top: -5px;
+
+    .search-input {
+      border-radius: 18px;
+      padding: .275rem .45rem;
+      height: initial;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 7px;
+      right: 16px;
+      width: 18px;
+      height: 18px;
+      border-width: 1px;
+
+      &:after {
+        left: 18px;
+        top: 10px;
+        width: 1px;
+        height: 10px;
+      }
+    }
+  }
+
+  .custom-form{
+    .help-button{
+      position: relative;
+      top: 0;
+      cursor: pointer;
+    }
+  }
 }
 
 
@@ -21,4 +59,5 @@ gray85: #FAFDFF
   @import "main-header";
   @import "badge-management";
   @import "user-management";
+  @import "_survey-management";
 }

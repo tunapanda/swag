@@ -1,6 +1,9 @@
+const { raw } = require('objection');
 const Model = require('./_model');
 const knex = require('../db/db');
-const { raw } = require('objection');
+const {SHooksEventEmitter} = require('../utils/event-emitter');
+const {events} = require('../utils/storage-hooks-events');
+
 class Reaction extends Model {
   static get tableName() {
     return 'reactions';
@@ -26,6 +29,25 @@ class Reaction extends Model {
       },
     };
   }
+
+  async $afterInsert(queryContext) {
+    await super.$afterInsert(queryContext);
+
+    if(SHooksEventEmitter.listenerCount(events.user.reaction.countOnCreate)>0) {
+   
+      // get total
+      const results = await Reaction.query(queryContext.transaction)
+        .count('id')
+        .where('user_id', this.userId);
+
+
+      SHooksEventEmitter.emit(events.user.reaction.countOnCreate, {
+        totalReactions: results[0].count,
+        creatorId: this.userId
+      });
+    }
+  }
+
 }
 
 Reaction.knex(knex);

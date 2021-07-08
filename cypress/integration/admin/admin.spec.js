@@ -56,5 +56,8 @@ describe('Admin UI after authentication', () => {
             .should('be.visible')
     });
 
-
+    it('links to survey management page', () => {
+        cy.get('a[href="/admin/surveys"]')
+            .should('be.visible');
+    });
 })

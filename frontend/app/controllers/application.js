@@ -41,4 +41,15 @@ export default class ApplicationController extends Controller {
   get isAdminRoute() {
     return this.route.startsWith('admin');
   }
+  @action
+  loadUserNotifications() {
+    if (
+      this.me.isAuthenticated &&
+      this.session.data?.authenticated?.tokenData?.data?.id
+    ) {
+      return this.store.query('notification', {
+        recipientId: this.session.data?.authenticated?.tokenData?.data?.id,
+      });
+    }
+  }
 }

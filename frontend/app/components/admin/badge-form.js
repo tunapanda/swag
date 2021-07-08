@@ -49,7 +49,7 @@ export default class AdminBadgeFormComponent extends Component {
     } else {
       const original = this.store.peekRecord('badge', model.id);
 
-      Object.keys(model).map((key) => {
+      Object.keys(model.get('data')).map((key) => {
         original[key] = model[key];
       });
       try {

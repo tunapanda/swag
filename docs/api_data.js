@@ -2189,6 +2189,66 @@ define({ "api": [
     "groupTitle": "ChapterComments"
   },
   {
+    "type": "get",
+    "url": "/api/v1/chapter-tags",
+    "title": "GET all chapter tags",
+    "name": "Get_chapter_tags",
+    "group": "Chapter_Tags",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": true,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "chapterTags",
+            "description": "<p>Top level object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "chapterTags[name]",
+            "description": "<p>A label for the tag</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"chapterTags\":[{\"name\": \"Digital Literacy\" }]\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/chapter-tags.js",
+    "groupTitle": "Chapter_Tags",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/chapter-tags"
+      }
+    ]
+  },
+  {
     "type": "delete",
     "url": "/api/v1/review/:id",
     "title": "Delete a chapter",
@@ -2748,6 +2808,85 @@ define({ "api": [
     },
     "filename": "server/routes/chapters.js",
     "groupTitle": "Chapters"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/groups/:id",
+    "title": "GET group by id",
+    "name": "Get_group_by_id",
+    "group": "Group",
+    "permission": [
+      {
+        "name": "authenticated user[moderator/admin/superadmin]"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "URI Param": [
+          {
+            "group": "URI Param",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>group id</p>"
+          }
+        ]
+      }
+    },
+    "filename": "server/routes/groups.js",
+    "groupTitle": "Group",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/groups/:id"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/groups",
+    "title": "GET all user groups",
+    "name": "Get_user_groups",
+    "group": "Group",
+    "permission": [
+      {
+        "name": "authenticated user[moderator/admin/superadmin]"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "filename": "server/routes/groups.js",
+    "groupTitle": "Group",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/groups"
+      }
+    ]
   },
   {
     "type": "get",
@@ -3465,14 +3604,14 @@ define({ "api": [
             "type": "Object",
             "optional": true,
             "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Success 200",
             "type": "Object",
             "optional": true,
             "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "description": "<p>Id of model record</p>"
           },
           {
             "group": "Success 200",
@@ -3564,73 +3703,66 @@ define({ "api": [
         "Query Params": [
           {
             "group": "Query Params",
-            "type": "Object",
-            "optional": false,
-            "field": "notification",
-            "description": "<p>Top level object</p>"
-          },
-          {
-            "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "notification[id]",
+            "optional": true,
+            "field": "id",
             "description": "<p>notification id</p>"
           },
           {
             "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "notification[title]",
+            "optional": true,
+            "field": "title",
             "description": "<p>Title of the notification</p>"
           },
           {
             "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "notification[body]",
+            "optional": true,
+            "field": "body",
             "description": "<p>Body of the notification</p>"
           },
           {
             "group": "Query Params",
-            "type": "Object",
+            "type": "String",
             "optional": true,
-            "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "field": "model",
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Query Params",
             "type": "Object",
             "optional": true,
             "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "description": "<p>Id of referenced model record</p>"
           },
           {
             "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "notification[eventType]",
+            "optional": true,
+            "field": "eventType",
             "description": "<p>Type of event. Can be used to resolve related notification model.</p>"
           },
           {
             "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "notification[recipientId]",
+            "optional": true,
+            "field": "recipientId",
             "description": "<p>Id of the user being notified</p>"
           },
           {
             "group": "Query Params",
-            "type": "Boolean",
-            "optional": false,
-            "field": "notification[read]",
-            "description": "<p>if user has read the notification</p>"
+            "type": "String",
+            "optional": true,
+            "field": "creatorId",
+            "description": "<p>Id of the user who created the notification</p>"
           },
           {
             "group": "Query Params",
-            "type": "Object",
+            "type": "Boolean",
             "optional": true,
-            "field": "notification[metadata]",
-            "description": "<p>Any metadata related to the notification</p>"
+            "field": "read",
+            "description": "<p>if user has read the notification</p>"
           }
         ]
       }
@@ -3642,84 +3774,84 @@ define({ "api": [
             "group": "Success 200",
             "type": "Object",
             "optional": false,
-            "field": "notification",
+            "field": "notifications",
             "description": "<p>Top level object</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[id]",
+            "field": "notifications[id]",
             "description": "<p>notification id</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[title]",
+            "field": "notifications[title]",
             "description": "<p>Title of the notification</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[body]",
+            "field": "notifications[body]",
             "description": "<p>Body of the notification</p>"
           },
           {
             "group": "Success 200",
             "type": "Object",
             "optional": true,
-            "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "field": "notifications[model]",
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Success 200",
             "type": "Object",
             "optional": true,
-            "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "field": "notifications[itemId]",
+            "description": "<p>Id of model record</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[eventType]",
+            "field": "notifications[eventType]",
             "description": "<p>Type of event. Can be used to resolve related notification model.</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[recipientId]",
+            "field": "notifications[recipientId]",
             "description": "<p>Id of the user being notified</p>"
           },
           {
             "group": "Success 200",
             "type": "Boolean",
             "optional": false,
-            "field": "notification[read]",
+            "field": "notifications[read]",
             "description": "<p>if user has read the notification</p>"
           },
           {
             "group": "Success 200",
             "type": "Object",
             "optional": true,
-            "field": "notification[metadata]",
+            "field": "notifications[metadata]",
             "description": "<p>Any metadata related to the notification</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[createdAt]",
+            "field": "notifications[createdAt]",
             "description": "<p>date created</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "notification[updatedAt]",
+            "field": "notifications[updatedAt]",
             "description": "<p>date updated</p>"
           }
         ]
@@ -3727,7 +3859,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n     {\n        \"notification\":{\n            \"id\": \"I3ml3x-AAPE\",\n            \"title\": \"Your chapter has been approved\",\n            \"body\": \"Your recently published chapter has been approved!\",\n            \"itemId\": \"I3lchuEAA80\",\n            \"eventType\": \"chapter-approved\",\n            \"model\": \"chapter\",\n            \"recipientId\": \"user2\",\n            \"creatorId\": \"user1\",\n            \"read\": false,\n            \"metadata\":{\"sendEmail\": true},\n            \"createdAt\": \"2021-04-20T20:12:39.830Z\",\n            \"updatedAt\": \"2021-04-20T20:12:39.830Z\"\n           }\n     }",
+          "content": "HTTP/1.1 200 OK\n     {\n        \"notifications\":[{\n            \"id\": \"I3ml3x-AAPE\",\n            \"title\": \"Your chapter has been approved\",\n            \"body\": \"Your recently published chapter has been approved!\",\n            \"itemId\": \"I3lchuEAA80\",\n            \"eventType\": \"chapter-approved\",\n            \"model\": \"chapter\",\n            \"recipientId\": \"user2\",\n            \"creatorId\": \"user1\",\n            \"read\": false,\n            \"metadata\":{\"sendEmail\": true},\n            \"createdAt\": \"2021-04-20T20:12:39.830Z\",\n            \"updatedAt\": \"2021-04-20T20:12:39.830Z\"\n           }]\n     }",
           "type": "json"
         }
       ]
@@ -3779,13 +3911,6 @@ define({ "api": [
         "Request Body": [
           {
             "group": "Request Body",
-            "type": "Object",
-            "optional": false,
-            "field": "notification",
-            "description": "<p>Top level object</p>"
-          },
-          {
-            "group": "Request Body",
             "type": "String",
             "optional": true,
             "field": "notification[title]",
@@ -3803,14 +3928,14 @@ define({ "api": [
             "type": "Object",
             "optional": true,
             "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Request Body",
             "type": "Object",
             "optional": true,
             "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "description": "<p>Id of model record</p>"
           },
           {
             "group": "Request Body",
@@ -3879,14 +4004,14 @@ define({ "api": [
             "type": "Object",
             "optional": true,
             "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Success 200",
             "type": "Object",
             "optional": true,
             "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "description": "<p>Id of model record</p>"
           },
           {
             "group": "Success 200",
@@ -3978,13 +4103,6 @@ define({ "api": [
         "Request Body": [
           {
             "group": "Request Body",
-            "type": "Object",
-            "optional": false,
-            "field": "notification",
-            "description": "<p>Top level object</p>"
-          },
-          {
-            "group": "Request Body",
             "type": "String",
             "optional": false,
             "field": "notification[title]",
@@ -4002,14 +4120,14 @@ define({ "api": [
             "type": "Object",
             "optional": true,
             "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Request Body",
             "type": "Object",
             "optional": true,
             "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "description": "<p>Id of model record</p>"
           },
           {
             "group": "Request Body",
@@ -4078,14 +4196,14 @@ define({ "api": [
             "type": "Object",
             "optional": true,
             "field": "notification[model]",
-            "description": "<p>Optional model name related to notification (refer to Wikonnect/frontend/app/models)</p>"
+            "description": "<p>Model name related to notification (refer <a target=\"_blank\" href=\"https://github.com/tunapanda/wikonnect/tree/master/frontend/app/models\"> here </a>)</p>"
           },
           {
             "group": "Success 200",
             "type": "Object",
             "optional": true,
             "field": "notification[itemId]",
-            "description": "<p>Optional Id of model record</p>"
+            "description": "<p>Id of model record</p>"
           },
           {
             "group": "Success 200",
@@ -5055,13 +5173,6 @@ define({ "api": [
         "Request Body": [
           {
             "group": "Request Body",
-            "type": "Object",
-            "optional": false,
-            "field": "rating",
-            "description": "<p>Top level object</p>"
-          },
-          {
-            "group": "Request Body",
             "type": "String",
             "optional": true,
             "field": "rating[id]",
@@ -5785,33 +5896,26 @@ define({ "api": [
     ],
     "parameter": {
       "fields": {
-        "Optional Params": [
+        "Query Params": [
           {
-            "group": "Optional Params",
+            "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "reaction.id",
-            "description": "<p>Chapter Id</p>"
+            "optional": true,
+            "field": "reaction",
+            "description": "<p>Reaction type (like|dislike).</p>"
           },
           {
-            "group": "Optional Params",
+            "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "reaction[reaction]",
-            "description": "<p>Reaction type (like|dislike|whatever).</p>"
-          },
-          {
-            "group": "Optional Params",
-            "type": "String",
-            "optional": false,
-            "field": "reaction[chapter_id]",
+            "optional": true,
+            "field": "chapterId",
             "description": "<p>Chapter id.</p>"
           },
           {
-            "group": "Optional Params",
+            "group": "Query Params",
             "type": "String",
-            "optional": false,
-            "field": "reaction[user_id]",
+            "optional": true,
+            "field": "userId",
             "description": "<p>Authenticated user id</p>"
           }
         ]
@@ -5881,40 +5985,6 @@ define({ "api": [
       }
     ],
     "version": "0.4.0",
-    "parameter": {
-      "fields": {
-        "Optional Params": [
-          {
-            "group": "Optional Params",
-            "type": "String",
-            "optional": false,
-            "field": "reaction[id]",
-            "description": "<p>Chapter Id</p>"
-          },
-          {
-            "group": "Optional Params",
-            "type": "String",
-            "optional": false,
-            "field": "reaction[reaction]",
-            "description": "<p>Reaction type (like|dislike|whatever).</p>"
-          },
-          {
-            "group": "Optional Params",
-            "type": "String",
-            "optional": false,
-            "field": "reaction[chapter_id]",
-            "description": "<p>Chapter id.</p>"
-          },
-          {
-            "group": "Optional Params",
-            "type": "String",
-            "optional": false,
-            "field": "reaction[user_id]",
-            "description": "<p>Authenticated user id</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "examples": [
         {
@@ -6057,6 +6127,809 @@ define({ "api": [
     },
     "filename": "server/routes/search.js",
     "groupTitle": "Search"
+  },
+  {
+    "type": "delete",
+    "url": "/api/v1/surveys/:id",
+    "title": "Delete a survey",
+    "name": "DELETE_a_survey_by_Id",
+    "group": "Surveys",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "URI Param": [
+          {
+            "group": "URI Param",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the survey to delete</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 OK\n{ }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/surveys.js",
+    "groupTitle": "Surveys",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/surveys/:id"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/surveys/:id",
+    "title": "GET survey by Id",
+    "name": "Get_a_survey_by_Id",
+    "group": "Surveys",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "URI Param": [
+          {
+            "group": "URI Param",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>survey id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "survey",
+            "description": "<p>Top level object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[id]",
+            "description": "<p>Survey id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyType]",
+            "description": "<p>Kind of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[name]",
+            "description": "<p>Name/title of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[description]",
+            "description": "<p>Short survey description/purpose</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[expiry]",
+            "description": "<p>When the survey will expire</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[status]",
+            "description": "<p>General survey status(published,draft,archive)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyEmbed]",
+            "description": "<p>An embed of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[triggerId]",
+            "description": "<p>Lookup for the action that should trigger issuing of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "survey[frequency]",
+            "description": "<p>No. of times the trigger should happen</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[creatorId]",
+            "description": "<p>Lookup for the user who created the record</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[createdAt]",
+            "description": "<p>date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[updatedAt]",
+            "description": "<p>date updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n     {\n        \"survey\":{\n            \"id\": \"I_QFVJaAAno\",\n            \"surveyType\": \"mne\",\n            \"name\": \"Wikonnect usability\",\n            \"status\": \"archived\",\n            \"description\": \"Give us feedback on how difficult on getting started on Wikonnect platform\",\n            \"expiry\": \"2022-04-12T18:51:51.867Z\",\n            \"surveyEmbed\": \"<iframe src='https://docs.google.com/forms/d/xyz?embedded=xyz'>loading…</iframe>\",\n            \"frequency\": 8,\n            \"triggerId\": \"I_QFVJGAAnc\",\n            \"creatorId\": \"user3\",\n            \"createdAt\": \"2021-03-22T19:25:00.075Z\",\n            \"updatedAt\": \"2021-06-07T05:16:54.118Z\"\n           }\n     }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/surveys.js",
+    "groupTitle": "Surveys",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/surveys/:id"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/surveys",
+    "title": "GET all surveys",
+    "name": "Get_all_surveys",
+    "group": "Surveys",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Query Params": [
+          {
+            "group": "Query Params",
+            "type": "String",
+            "optional": true,
+            "field": "surveyType",
+            "description": "<p>Query surveys by category</p>"
+          },
+          {
+            "group": "Query Params",
+            "type": "String",
+            "optional": true,
+            "field": "name",
+            "description": "<p>Filter surveys by survey[name]</p>"
+          },
+          {
+            "group": "Query Params",
+            "type": "String",
+            "optional": true,
+            "field": "status",
+            "description": "<p>Filter surveys by survey[status]</p>"
+          },
+          {
+            "group": "Query Params",
+            "type": "Boolean",
+            "optional": true,
+            "field": "expired",
+            "description": "<p>Filter survey by expiry status</p>"
+          },
+          {
+            "group": "Query Params",
+            "type": "String",
+            "optional": true,
+            "field": "triggerId",
+            "description": "<p>Filter survey by survey[triggerId]</p>"
+          },
+          {
+            "group": "Query Params",
+            "type": "String",
+            "optional": true,
+            "field": "creatorId",
+            "description": "<p>Filter survey by it's author</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "surveys",
+            "description": "<p>Top level object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[id]",
+            "description": "<p>Survey id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[surveyType]",
+            "description": "<p>Kind of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[name]",
+            "description": "<p>Name/title of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[description]",
+            "description": "<p>Short survey description/purpose</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[expiry]",
+            "description": "<p>When the survey will expire</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[status]",
+            "description": "<p>General survey status(published,draft,archive)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[surveyEmbed]",
+            "description": "<p>An embed of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[triggerId]",
+            "description": "<p>Lookup for the action that should trigger issuing of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "surveys[frequency]",
+            "description": "<p>No. of times the trigger should happen</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[creatorId]",
+            "description": "<p>Lookup for the user who created the record</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[createdAt]",
+            "description": "<p>date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "surveys[updatedAt]",
+            "description": "<p>date updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n     {\n        \"surveys\":[{\n            \"id\": \"I_QFVJaAAno\",\n            \"surveyType\": \"mne\",\n            \"name\": \"Wikonnect usability\",\n            \"status\": \"archived\",\n            \"description\": \"Give us feedback on how difficult on getting started on Wikonnect platform\",\n            \"expiry\": \"2022-04-12T18:51:51.867Z\",\n            \"surveyEmbed\": \"<iframe src='https://docs.google.com/forms/d/xyz?embedded=xyz'>loading…</iframe>\",\n            \"frequency\": 8,\n            \"triggerId\": \"I_QFVJGAAnc\",\n            \"creatorId\": \"user3\",\n            \"createdAt\": \"2021-03-22T19:25:00.075Z\",\n            \"updatedAt\": \"2021-06-07T05:16:54.118Z\"\n           }]\n     }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/surveys.js",
+    "groupTitle": "Surveys",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/surveys"
+      }
+    ]
+  },
+  {
+    "type": "put",
+    "url": "/api/v1/survey/:id",
+    "title": "PUT a survey",
+    "name": "PUT_a_survey_by_Id",
+    "group": "Surveys",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "URI Param": [
+          {
+            "group": "URI Param",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>survey Id to update</p>"
+          }
+        ],
+        "Request Body": [
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": true,
+            "field": "survey[surveyType]",
+            "defaultValue": "mne",
+            "description": "<p>Kind of the survey.</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[name]",
+            "description": "<p>Name/title of the survey</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[description]",
+            "description": "<p>Short survey description/purpose</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[expiry]",
+            "description": "<p>When the survey will expire</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": true,
+            "field": "survey[status]",
+            "defaultValue": "published",
+            "description": "<p>Survey status(published,draft,archive).</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyEmbed]",
+            "description": "<p>An embed of the survey</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[triggerId]",
+            "description": "<p>Lookup for the action that should trigger issuing of the survey</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": true,
+            "field": "survey[frequency]",
+            "defaultValue": "1",
+            "description": "<p>No. of times the trigger should happen.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "survey",
+            "description": "<p>Top level object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[id]",
+            "description": "<p>Survey id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyType]",
+            "description": "<p>Kind of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[name]",
+            "description": "<p>Name/title of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[description]",
+            "description": "<p>Short survey description/purpose</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[status]",
+            "description": "<p>General survey status(published,draft,archive)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[expiry]",
+            "description": "<p>When the survey will expire</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyEmbed]",
+            "description": "<p>An embed of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[triggerId]",
+            "description": "<p>Lookup for the action that should trigger issuing of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "survey[frequency]",
+            "description": "<p>No. of times the trigger should happen</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[creatorId]",
+            "description": "<p>Lookup for the user who created the record</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[createdAt]",
+            "description": "<p>date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[updatedAt]",
+            "description": "<p>date updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n     {\n        \"survey\":{\n            \"id\": \"I_QFVJaAAno\",\n            \"surveyType\": \"mne\",\n            \"name\": \"Wikonnect usability\",\n            \"status\": \"archived\",\n            \"description\": \"Give us feedback on how difficult on getting started on Wikonnect platform\",\n            \"expiry\": \"2022-04-12T18:51:51.867Z\",\n            \"surveyEmbed\": \"<iframe src='https://docs.google.com/forms/d/xyz?embedded=xyz'>loading…</iframe>\",\n            \"frequency\": 8,\n            \"triggerId\": \"I_QFVJGAAnc\",\n            \"creatorId\": \"user3\",\n            \"createdAt\": \"2021-03-22T19:25:00.075Z\",\n            \"updatedAt\": \"2021-06-07T05:16:54.118Z\"\n           }\n     }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/surveys.js",
+    "groupTitle": "Surveys",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/survey/:id"
+      }
+    ]
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/surveys",
+    "title": "POST a survey",
+    "name": "Post_a_survey",
+    "group": "Surveys",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "version": "0.4.0",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer &lt;&lt; JWT here&gt;&gt;</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Request Body": [
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": true,
+            "field": "surveyType[surveyType]",
+            "defaultValue": "mne",
+            "description": "<p>Kind of the survey.</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[name]",
+            "description": "<p>Name/title of the survey</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[description]",
+            "description": "<p>Short survey description/purpose</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[expiry]",
+            "description": "<p>When the survey will expire</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": true,
+            "field": "survey[status]",
+            "defaultValue": "published",
+            "description": "<p>Survey status(published,draft,archive).</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyEmbed]",
+            "description": "<p>An embed of the survey</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "String",
+            "optional": false,
+            "field": "survey[triggerId]",
+            "description": "<p>Lookup for the action that should trigger issuing of the survey</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": true,
+            "field": "survey[frequency]",
+            "defaultValue": "1",
+            "description": "<p>No. of times the trigger should happen.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "survey",
+            "description": "<p>Top level object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[id]",
+            "description": "<p>Survey id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyType]",
+            "description": "<p>Kind of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[name]",
+            "description": "<p>Name/title of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[description]",
+            "description": "<p>Short survey description/purpose</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[status]",
+            "description": "<p>General survey status(published,draft,archive)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[expiry]",
+            "description": "<p>When the survey will expire</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[surveyEmbed]",
+            "description": "<p>An embed of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[triggerId]",
+            "description": "<p>Lookup for the action that should trigger issuing of the survey</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "survey[frequency]",
+            "description": "<p>No. of times the trigger should happen</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[creatorId]",
+            "description": "<p>Lookup for the user who created the record</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[createdAt]",
+            "description": "<p>date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "survey[updatedAt]",
+            "description": "<p>date updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n     {\n        \"survey\":{\n            \"id\": \"I_QFVJaAAno\",\n            \"surveyType\": \"mne\",\n            \"name\": \"Wikonnect usability\",\n            \"status\": \"archived\",\n            \"description\": \"Give us feedback on how difficult on getting started on Wikonnect platform\",\n            \"expiry\": \"2022-04-12T18:51:51.867Z\",\n            \"surveyEmbed\": \"<iframe src='https://docs.google.com/forms/d/xyz?embedded=xyz'>loading…</iframe>\",\n            \"frequency\": 8,\n            \"triggerId\": \"I_QFVJGAAnc\",\n            \"creatorId\": \"user3\",\n            \"createdAt\": \"2021-03-22T19:25:00.075Z\",\n            \"updatedAt\": \"2021-06-07T05:16:54.118Z\"\n           }\n     }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "server/routes/surveys.js",
+    "groupTitle": "Surveys",
+    "sampleRequest": [
+      {
+        "url": "https://app.wikonnect.org/api/v1/surveys"
+      }
+    ]
   },
   {
     "type": "delete",
@@ -6293,13 +7166,6 @@ define({ "api": [
             "group": "Request Body",
             "type": "Object",
             "optional": false,
-            "field": "trigger",
-            "description": "<p>Top level object</p>"
-          },
-          {
-            "group": "Request Body",
-            "type": "Object",
-            "optional": false,
             "field": "trigger[id]",
             "description": "<p>trigger id</p>"
           },
@@ -6399,13 +7265,6 @@ define({ "api": [
           }
         ],
         "Request Body": [
-          {
-            "group": "Request Body",
-            "type": "Object",
-            "optional": false,
-            "field": "trigger",
-            "description": "<p>Top level object</p>"
-          },
           {
             "group": "Request Body",
             "type": "Object",

@@ -1,0 +1,106 @@
+<div class="survey-form">
+  <BsForm @model={{changeset this.model this.surveyValidations}} @onSubmit={{this.submitForm}}
+          class="col-lg-8 main-form custom-form" as |form|>
+
+    <form.element @property="name" class="row" as |el|>
+      <label class="col-md-4 col-form-label"> {{t "admin.surveys.labels.name"}}</label>
+      <div class="col-md-8">
+        <el.control placeholder={{t "admin.surveys.labels.name_placeholder"}} class="name-input"/>
+      </div>
+    </form.element>
+    <form.element @property="triggerId" class="row" as |el|>
+      <label class="col-md-4 col-form-label"> {{t "admin.surveys.labels.trigger"}}
+        <span class="help-button">
+          {{svg-jar "question-circle" height="13" width="13" stroke="#b1b6c0"}}
+          <BsPopover @autoPlacement={{true}} @placement="top" @triggerEvents="hover">
+            {{t "admin.surveys.help.what_trigger"}}
+          </BsPopover>
+        </span>
+      </label>
+      <div class="col-md-8">
+        <select id={{el.id}} required class="form-control trigger-select"
+          {{on "change" (fn this.triggerSelected el.setValue)}}>
+          {{#unless this.model.triggerId}}
+            <option disabled selected hidden value="">{{t "admin.surveys.labels.trigger_placeholder"}}</option>
+          {{/unless}}
+          {{#each this.triggers as |x|}}
+            <option value="{{x.id}}" selected="{{if (eq this.model.triggerId x.id) true}}">{{x.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </form.element>
+
+    <form.element @controlType="number" @property="frequency"
+                  class="row" as |el|>
+      <label class="col-md-4 col-form-label">
+        {{t "admin.surveys.labels.frequency"}}
+        <span class="help-button">
+          {{svg-jar "question-circle" height="13" width="13" stroke="#b1b6c0"}}
+          <BsPopover @autoPlacement={{true}} @placement="top" @triggerEvents="hover">
+            {{t "admin.surveys.help.what_frequency"}}
+          </BsPopover>
+        </span>
+      </label>
+      <div class="col-md-8">
+        <el.control placeholder={{t "admin.surveys.labels.frequency_placeholder"}} class="frequency-input"/>
+      </div>
+    </form.element>
+
+    <form.element @controlType="date" @property="expiry"
+                  class="row" as |el|>
+      <label class="col-md-4 col-form-label">
+        {{t "admin.surveys.labels.expiry_date"}}
+        <span class="help-button">
+          {{svg-jar "question-circle" height="13" width="13" stroke="#b1b6c0"}}
+          <BsPopover @autoPlacement={{true}} @placement="top" @triggerEvents="hover">
+            {{t "admin.surveys.help.what_expiry"}}
+          </BsPopover>
+        </span>
+      </label>
+
+      <div class="col-md-8">
+        <el.control class="expiry-input"></el.control>
+      </div>
+    </form.element>
+
+
+    <form.element @property="surveyEmbed" class="row" as |el|>
+      <label class="col-md-4 col-form-label">
+        {{t "admin.surveys.labels.embed"}}
+        <span class="help-button">
+          {{svg-jar "question-circle" height="13" width="13" stroke="#b1b6c0"}}
+          <BsPopover @autoPlacement={{true}} @placement="top" @triggerEvents={{array "click" "hover"}}>
+            {{html-safe (t "admin.surveys.help.what_embed")}}
+          </BsPopover>
+        </span>
+      </label>
+      <div class="col-md-8">
+        <el.control placeholder={{t "admin.surveys.labels.embed_placeholder"}} class="embed-input"/>
+      </div>
+    </form.element>
+
+
+    <form.element @controlType="textarea" @property="description"
+                  class="row" as |el|>
+      <label class="col-md-4 col-form-label">
+        {{t "admin.surveys.labels.description"}}
+        <span class="help-button">
+          {{svg-jar "question-circle" height="13" width="13" stroke="#b1b6c0"}}
+          <BsPopover @autoPlacement={{true}} @placement="top" @triggerEvents="hover">
+            {{t "admin.surveys.help.what_message"}}
+          </BsPopover>
+        </span>
+      </label>
+      <div class="col-md-8">
+        <el.control placeholder={{t "admin.surveys.labels.description_placeholder"}} class="description-input"/>
+      </div>
+    </form.element>
+
+    <div class="form-group d-flex justify-content-end mr-3">
+      <form.submitButton class="btn btn-primary btn-submit">
+        {{t "admin.surveys.buttons.save"}}
+      </form.submitButton>
+    </div>
+  </BsForm>
+
+</div>
