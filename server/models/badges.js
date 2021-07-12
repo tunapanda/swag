@@ -38,6 +38,14 @@ class Badge extends softDelete({ columnName: 'is_deleted' })(Model) {
       }
     };
   }
+
+  static get modifiers() {
+    return {
+      selectNameAndId: (builder) => {
+        builder.select('users.id', 'users.name', 'badge.id');
+      }
+    };
+  }
 }
 
 Badge.knex(knex);

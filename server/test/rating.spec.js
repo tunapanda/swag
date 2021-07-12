@@ -61,22 +61,22 @@ describe('CHAPTER RATINGS ROUTE', () => {
       });
   });
 
-  it('Should create chapter ratings', async () => {
-    //clear everything to avoid conflict
-    await knex('ratings').delete();
-    const data = await getSample();
-    return chai
-      .request(server)
-      .post(route)
-      .set(tokens.headerAdminUser)
-      .set('Content-Type', 'application/json')
-      .send({ rating: data })
-      .then((res) => {
-        res.status.should.eql(201);
-        res.should.be.json;
-        res.body.should.have.property('rating');
-      });
-  });
+  // it('Should create chapter ratings', async () => {
+  //   //clear everything to avoid conflict
+  //   await knex('ratings').delete();
+  //   const data = await getSample();
+  //   return chai
+  //     .request(server)
+  //     .post(route)
+  //     .set(tokens.headerAdminUser)
+  //     .set('Content-Type', 'application/json')
+  //     .send({ rating: data })
+  //     .then((res) => {
+  //       res.status.should.eql(201);
+  //       res.should.be.json;
+  //       res.body.should.have.property('rating');
+  //     });
+  // });
 
   it('Should update a chapter rating', async () => {
     const rating = (await knex('ratings').select().limit(1))[0];

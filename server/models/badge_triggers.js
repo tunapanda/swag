@@ -26,6 +26,19 @@ class BadgeTriggers extends Model {
     };
   }
 
+  static get relationMappings() {
+    return {
+      badges: {
+        relation: Model.HasManyRelation,
+        modelClass: __dirname + '/badges',
+        join: {
+          from: 'badges.trigger_id',
+          to: 'badge_triggers.id'
+        }
+      }
+    };
+  }
+
   async $indexForSearch() {
     return null;
   }

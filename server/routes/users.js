@@ -103,7 +103,7 @@ router.post('/', validateAuthRoutes.validateNewUser, createPasswordHash, async c
 
     log.info('Created a user with id %s with username %s with the invite code %s', user.id, user.username, user.inviteCode);
     sendVerificationEmail(user, ctx.request.body.user.email);
-    
+
     ctx.status = 201;
     ctx.body = { user };
   } catch (e) {
@@ -200,7 +200,7 @@ router.get('/:id', permController.requireAuth, async ctx => {
   let user = await User.query()
     .findById(userId)
     .withGraphFetched('[achievementAwards(selectBadgeNameAndId), userRoles(selectNameAndId),' +
-      ' enrolledCourses(selectNameAndId)]');
+      ' enrolledCourses(selectNameAndId), leaderboard()]');
 
   ctx.assert(user, 404, 'No User With that Id');
   user.profileUri = await getProfileImage(user);

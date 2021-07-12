@@ -81,7 +81,6 @@ describe('BADGES ROUTE', () => {
       .set(tokens.headerAdminUser)
       .set('Content-Type', 'application/json')
       .then((res) => {
-        console.log(res.body.badge);
         res.status.should.eql(200);
         res.should.be.json;
         res.body.should.have.property('badge');

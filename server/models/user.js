@@ -93,6 +93,18 @@ class User extends Model {
           },
           to: 'groups.id'
         }
+      },
+      leaderboard: {
+        relation: Model.ManyToManyRelation,
+        modelClass: __dirname + '/badges',
+        join: {
+          from: 'users.id',
+          through: {
+            from: 'user_badges.user_id',
+            to: 'user_badges.badge_id'
+          },
+          to: 'badges.id'
+        }
       }
     };
   }

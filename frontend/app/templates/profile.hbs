@@ -110,59 +110,6 @@
             </div>
           </div>
         </div>
-
-        {{!--
-        <div class="badges-unlocked-card d-flex flex-column">
-          <div class="section-title">
-            <span class="section-icon"></span> {{t "profile.top_achievements"}}
-          </div>
-          <div class="badges-list d-flex flex-wrap">
-            <div class="mini-badge-card col-md-4">
-              <div class="card-image-container">
-                <img src="https://pg.labskenya.com/medba.svg" alt="" role="presentation">
-              </div>
-              <div class="detailed-content d-flex flex-column justify-content-center align-items-center">
-                <div class="title" role="link" {{on "click" this.viewAllUnlockedBadges}}>
-                  Super Commenter
-                </div>
-                <div class="points">1000</div>
-              </div>
-              <button type="button" class="btn btn-primary btn-sm btn-share">
-                {{t "profile.badges.share_btn"}}
-              </button>
-            </div>
-            <div class="mini-badge-card col-md-4">
-              <div class="card-image-container">
-                <img src="https://pg.labskenya.com/medal.svg" alt="" role="presentation">
-              </div>
-              <div class="detailed-content d-flex flex-column justify-content-center align-items-center">
-                <div class="title" role="link" {{on "click" this.viewAllUnlockedBadges}}>
-                  Super Commenter
-                </div>
-                <div class="points">1000</div>
-              </div>
-              <button type="button" class="btn btn-primary btn-sm btn-share">
-                {{t "profile.badges.share_btn"}}
-              </button>
-            </div>
-
-            <div class="mini-badge-card extra-badges col-md-4">
-              <div class="badge-icon-container" role="link" {{on "click" this.viewAllUnlockedBadges}}>
-                <img src="https://pg.labskenya.com/medba.svg" class="badge-icon" alt="" role="presentation">
-              </div>
-              <div class="badge-icon-container" role="link" {{on "click" this.viewAllUnlockedBadges}}>
-                <img src="https://pg.labskenya.com/badge.svg" class="badge-icon" alt="" role="presentation">
-              </div>
-              <div class="badge-icon-container" role="link" {{on "click" this.viewAllUnlockedBadges}}>
-                <img src="https://pg.labskenya.com/medal.svg" class="badge-icon" alt="" role="presentation">
-              </div>
-              <div class="badge-icon-container" role="link" {{on "click" this.viewAllUnlockedBadges}}>
-                +5
-              </div>
-            </div>
-          </div>
-        </div>
-        --}}
       </div>
 
     </div>
@@ -181,8 +128,24 @@
           {{t "profile.nav.achievements"}}
         </LinkTo>
       </div>
-
     </div>
+
+    {{!-- <BsTab as |tab|>
+      <tab.pane @title={{t "profile.nav.home"}}>
+        {{t "profile.nav.home"}}
+      </tab.pane>
+      <tab.pane @title={{t "profile.nav.achievements"}}>
+        <div class="row">
+          {{#each this.model.achievementAwards as |achievement|}}
+          <div class="col">
+            <Achievement @name={{achievement.name}} @created={{achievement.createdAt}} @badge={{achievement.imageUrl}} />
+          </div>
+          {{/each}}
+
+        </div>
+      </tab.pane>
+    </BsTab> --}}
+
 
     {{outlet}}
   </div>

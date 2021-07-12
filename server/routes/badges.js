@@ -95,8 +95,6 @@ router.get('/', requireAuth, async ctx => {
   const { expiry, ...query } = ctx.query;
   let badges = Badge.query().where(query);
 
-  console.log(typeof(expiry));
-
   if (expiry === 'true') badges.where('expiry', '>=', new Date().toISOString());
   if (expiry === 'false') badges.where('expiry', '<=', new Date().toISOString());
 

@@ -26,7 +26,7 @@ export default class ProfileController extends Controller {
   }
 
   get totalPointsEarnedByUser() {
-    return 0;
+    return 3;
   }
 
   get totalChaptersEarnedByUser() {
