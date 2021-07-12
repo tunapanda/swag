@@ -15,7 +15,7 @@ export default class TeachH5pEditorController extends Controller {
   }
 
   @action
-  async saveH5PContent() {
+  async saveH5PContent(previewImmediately) {
     if (!this.editor) {
       this.notify.info('You need to create content first to proceed');
       return;
@@ -24,6 +24,9 @@ export default class TeachH5pEditorController extends Controller {
       const res = await this.editor.save();
       this.model.contentId = res.id;
       await this.model.save();
+      if (previewImmediately) {
+        return this.transitionToRoute('teach.preview', this.model.id);
+      }
       this.transitionToRoute('teach.thumbnail-upload', this.model.id);
     } catch (e) {
       if (e.message && e.message.startsWith('validation-error')) {

@@ -1,11 +1,11 @@
 greeting: Welcome {name}
 role: "Role: {role}"
 bio: Bio
-edit_button: Edit my profile
-chapters_created: Chapters created
-chapters_watched: Chapters completed
-points_earned: Total points earned
-top_achievements: Top achievements
+edit_button: Edit My Profile
+chapters_created: Chapters Created
+chapters_watched: Chapters Completed
+points_earned: Total Points Earned
+top_achievements: Top Achievements
 no_bio: Apparently, this user prefers to keep an air of mystery about them
 
 nav:
@@ -23,7 +23,7 @@ achievements_page:
   title: Earned badges
 
 edit_profile_page:
-  title: Edit my profile
+  title: Edit My Profile
   buttons:
     view_profile: View Profile
     browse: Select File

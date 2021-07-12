@@ -1,7 +1,7 @@
 login:
-  title: Fundisha kitu poa
+  title: Fundisha Kitu Poa
   subtitle: Unda yaliyomo yenye athari
-  copy: Ingia ili uunde masomo kwa dakika chache tu. Ukitumia '<'a href="https://h5p.org/"'>'H5P'</a>', unaweza kuunda video zinazovutia, ngoma na mitihani, na usambaze kwa wanafunzi kote ulimwenguni.
+  copy: Ingia ili uunde masomo kwa dakika chache tu. Ukitumia '<'a target="_blank" href="https://h5p.org/"'>'H5P'</a>', unaweza kuunda video zinazovutia, ngoma na mitihani, na usambaze kwa wanafunzi kote ulimwenguni.
   login_below: Ingia hapa chini
   login_subtitle: Anza kuunda masomo kwa dakika chache tu
   sign_up: Ikiwa huna akaunti ya wikonnect, '<'a href="/signup"'>'jiandikishe hapa'</a>'
@@ -9,11 +9,11 @@ login:
 
 index:
   my_content: Rekodi Zangu
-  drafts: Sura ambazo hazijachapishwa
-  published: Sura zilizochapishwa
+  drafts: Sura ambazo Hazijachapishwa
+  published: Sura Zilizochapishwa
   no_drafts: Hakuna sura zilizoundwa bado
   no_published: Hakuna kilichochapishwa bado
-  get_started: Anza hapa
+  get_started: Anza Hapa
   no_permission: Huna ruhusa ya kutazama ukurasa huu
 
 toc:
@@ -21,7 +21,7 @@ toc:
   h5p_content: Rekodi ya H5P
   thumbnail: Kijipicha
   tags: Lebo
-  preview_publish: Hakikisha halafu hapisha
+  preview_publish: Hakikisha Halafu Chapisha
   select_review_questions: Ukadiriaji na Maoni
 
 
@@ -35,28 +35,28 @@ edit:
   update: Sasisha
 
 h5p:
-  init: Inaanzisha mhariri
+  init: Inaanzisha Mhariri
   upload:
     title: Pakia faili ya zip ya H5P
-    drag_and_drop: Buruta na uangushe hapa
+    drag_and_drop: Buruta na Uangushe Hapa
     or: au
     uploading: Inapakia...
     redirect_message: Utaelekezwa mara baada ya kupakia kukamilika
-    browse_files: Vinjari faili
+    browse_files: Vinjari Faili
 
 thumbnail:
-  upload: Pakia kijipicha
-  drag_and_drop: Buruta na uangushe picha hapa
+  upload: Pakia Kijipicha
+  drag_and_drop: Buruta na Uangushe Picha Hapa
   or: au
   max_size: Faili isizidi 8mb
   accepted_file_types: "Aina za faili zilizokubaliwa: jpg, png, svg"
   uploading: Inapakia ...
   redirect_mesg: Utaelekezwa mara baada ya kupakia kukamilika
-  browse_files: Vinjari faili
+  browse_files: Vinjari Faili
   change_image: Badilisha picha
 
 tag:
-  custom_tag: Ongeza lebo maalum
+  custom_tag: Ongeza Lebo Maalum
   custom_tag_placeholder: Ongeza lebo maalum hapa
   select: Chagua Lebo
   topic: Mada
@@ -64,7 +64,7 @@ tag:
   level: Kiwango
   platform: Jukwaa
   kicd_status: Hali ya KICD
-  tag_name: Jina la lebo
+  tag_name: Jina la Lebo
 
 review_questions:
   title: Wanafunzi watapima na kukagua yaliyomo kulingana na kategoria tofauti. Maoni haya kutoka kwa wanafunzi yatakusaidia kuwa mwalimu bora zaidi na mtunzi wa yaliyomo.
@@ -76,14 +76,14 @@ preview:
   chapter: Sura
   approved: Imeidhinishwa
   unapproved: Haijaidhinishwa
-  upload_thumbnail_h5p: Pakia kijipicha na h5p ili uchapishe
+  upload_thumbnail_h5p: Pakia kijipicha na H5P ili uchapishe
   modify_tags: Rekebisha Lebo
   upload_h5p: Pakia H5P
   change_h5p: Hariri H5P
-  upload_thumbnail: Pakia kijipicha
-  edit_thumbnail: Hariri kijipicha
+  upload_thumbnail: Pakia Kijipicha
+  edit_thumbnail: Hariri Kijipicha
   tags: Lebo zilizochaguliwa
-  change_chapter_details: Badilisha maelezo ya sura
+  change_chapter_details: Badilisha Maelezo ya Sura
   publish: Chapisha
   unpublish: Ondoa
   delete: Futa
@@ -93,10 +93,11 @@ preview:
   section_titles:
     reviewQuestions: Aina zilizochaguliwa za ukaguzi na ukadiriaji
   buttons:
-    modifyReviewQuestions: Rekebisha maswali
+    modifyReviewQuestions: Rekebisha Maswali
 
 buttons:
   cancel: Ghairi
   previous: Nyuma
   next: Hifadhi na Endelea
   skip: Ruka kwa Sasa
+  save_and_preview: Hifadhi na Uhakiki

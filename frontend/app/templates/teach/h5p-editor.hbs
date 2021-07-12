@@ -27,6 +27,9 @@
       {{t "teach.buttons.previous"}}
     </LinkTo>
 
+    <button type="button" class="btn btn-outline-primary btn-sm ml-2 next" {{on "click" (fn this.saveH5PContent true)}} >
+      {{t "teach.buttons.save_and_preview"}}
+    </button>
     <button type="button" class="btn btn-primary btn-block ml-2 next" {{on "click" this.saveH5PContent}} >
       {{t "teach.buttons.next"}}
     </button>

@@ -1,7 +1,7 @@
 login:
   title: Teach Something Cool
   subtitle: Create impactful content
-  copy: Log in to create engaging learning content in minutes. Using '<'a href="https://h5p.org/"'>'H5P'</a>', you can create interactive videos, audio &amp; quizzes, and share with learners all over the world.
+  copy: Log in to create engaging learning content in minutes. Using '<'a target="_blank" href="https://h5p.org/"'>'H5P'</a>', you can create interactive videos, audio &amp; quizzes, and share with learners all over the world.
   login_below: Log in below
   login_subtitle: Start creating content in minutes
   sign_up: New to Wikonnect? '<'a href="/signup"'>'Sign Up'</a>'
@@ -45,25 +45,25 @@ h5p:
 
 thumbnail:
   upload: Upload Thumbnail
-  drag_and_drop: Drag and drop here
+  drag_and_drop: Drag and Drop Here
   or: or
   max_size: Max image file size allowed is 8mb
   accepted_file_types: "Accepted file types: jpg, png, svg"
   uploading: Uploading ...
   redirect_mesg: You will be redirected once upload is complete
-  browse_files: Browse files
-  change_image: Change image
+  browse_files: Browse Files
+  change_image: Change Image
 
 tag:
-  custom_tag: Add a custom tag
+  custom_tag: Add a Custom Tag
   custom_tag_placeholder: Add a custom tag here
-  select: Select tags
+  select: Select Tags
   topic: Topic
   competency: Competency
   level: Level
   platform: Platform
   kicd_status: KICD Status
-  tag_name: Tag name
+  tag_name: Tag Name
 
 review_questions:
   title: Learners will rate and review your content based on different categories. This feedback from learners will help you become an even better teacher and content creator.
@@ -75,14 +75,14 @@ preview:
   chapter: Chapter
   approved: Approved
   unapproved: Unapproved
-  upload_thumbnail_h5p: Upload thumbnail and h5p to publish
+  upload_thumbnail_h5p: Upload thumbnail and H5P to publish
   modify_tags: Modify Tags
   upload_h5p: Upload H5P
   change_h5p: Edit H5P
   upload_thumbnail: Upload Thumbnail
   edit_thumbnail: Edit Thumbnail
   tags: Selected tags
-  change_chapter_details: Change Chapter details
+  change_chapter_details: Change Chapter Details
   publish: Publish
   unpublish: Unpublish
   delete: Delete
@@ -92,10 +92,11 @@ preview:
   section_titles:
     reviewQuestions: Selected review and ratings questions categories
   buttons:
-    modifyReviewQuestions: Modify questions
+    modifyReviewQuestions: Modify Questions
 
 buttons:
   cancel: Cancel
   previous: Back
   next: Save and Continue
   skip: Skip
+  save_and_preview: Save and Preview

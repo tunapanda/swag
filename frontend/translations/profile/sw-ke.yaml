@@ -1,10 +1,10 @@
 greeting: Karibu {name}
 role: "Wajibu: {role}"
 bio: Wasifu
-edit_button: Hariri maelezo yangu mafupi
-chapters_created: Sura zimeundwa
-chapters_watched: Sura zimekamilika
-points_earned: Jumla ya alama zilizopatikana
+edit_button: Hariri Maelezo Yangu Mafupi
+chapters_created: Sura Zimeundwa
+chapters_watched: Sura Zimekamilika
+points_earned: Jumla ya Alama Zilizopatikana
 top_achievements: Mafanikio ya juu
 no_bio: Inavyoonekana, mtumiaji huyu anapendelea kuweka siri juu yao
 
@@ -23,21 +23,21 @@ achievements_page:
   title: Beji zilizopatikana
 
 edit_profile_page:
-  title: Hariri maelezo yangu mafupi
+  title: Hariri Maelezo Yangu Mafupi
   buttons:
-    view_profile: View Profile
+    view_profile: Tazama Profaili
     browse: Chagua Faili
-    save: Hifadhi mabadiliko
+    save: Hifadhi Mabadiliko
   intro_subtitle: Utangulizi
   details_subtitle: Maelezo kukuhusu
-  details_section_prompt: Jitambulishe kwa jamii ya Wikonnect
-  first_name: Jina la kwanza
-  last_name: Jina la familia
-  contact_number: Nambari ya simu
-  email: Email Address
+  details_section_prompt: Jitambulishe kwa Jamii ya Wikonnect
+  first_name: Jina la Kwanza
+  last_name: Jina la Familia
+  contact_number: Nambari ya Simu
+  email: Barua Pepe
   photo: Picha ya Profaili
   photo_prompt: Ukubwa wa juu wa 15MB. JPG, GIF, SVG, au PNG
-  about: Kuhusu mimi
-  location: Eneo lako
+  about: Kuhusu Mimi
+  location: Eneo Lako
   location_prompt: Turkana, Kenya
   gender: Jinsia

@@ -126,10 +126,10 @@
   dependencies:
     vary "^1.1.2"
 
-"@lumieducation/h5p-server@^7.2.0":
-  version "7.5.2"
-  resolved "https://registry.yarnpkg.com/@lumieducation/h5p-server/-/h5p-server-7.5.2.tgz#208d8639dfc36b292d57911566e8ba1fd5c2c89c"
-  integrity sha512-Bc120CuAgOuRYUPWvxDFzpO+ppJRFT+qZtYQAMxUg3o71Ll4iJY+i00Zt4mp+hgWGw5hyG6wgcVp0c+JsIY+aA==
+"@lumieducation/h5p-server@^8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@lumieducation/h5p-server/-/h5p-server-8.1.1.tgz#113a8a43da5ffe3dc87152b6b4cc412d0e54007c"
+  integrity sha512-1nqV82BJ8nIurEFMdVHd0vx+MBX0f/HsBIFPlErw9JEqriS2d13K4c9fjEIX/Ya/MSygnGqvnvHjyqyQmT4IYw==
   dependencies:
     ajv "^8.0.0"
     ajv-keywords "^5.0.0"
@@ -139,6 +139,7 @@
     debug "^4.1.1"
     fs-extra "^9.0.0"
     get-all-files "^3.0.0"
+    https-proxy-agent "^5.0.0"
     image-size "^1.0.0"
     jsonpath "^1.0.2"
     merge "^2.0.0"
