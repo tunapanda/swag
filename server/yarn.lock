@@ -489,11 +489,6 @@ badwords-list@^1.0.0:
   resolved "https://registry.yarnpkg.com/badwords-list/-/badwords-list-1.0.0.tgz#5e9856dbf13482a295c3b0b304afb9d4cfc5c579"
   integrity sha1-XphW2/E0gqKVw7CzBK+51M/FxXk=
 
-badwords@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/badwords/-/badwords-1.0.0.tgz#5bfe152838a32958c0045c81fb4cb51c10ed781c"
-  integrity sha1-W/4VKDijKVjABFyB+0y1HBDteBw=
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"

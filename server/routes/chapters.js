@@ -134,7 +134,7 @@ router.get('/', permController.requireAuth, validateGetChapter, async ctx => {
       .withGraphFetched(
         '[reaction(reactionAggregate), flag(selectFlag),author()]'
       )
-      .orderBy('id');
+      .orderBy('createdAt', 'desc');
 
     /**retrieve correct user image**/
     //so not to re-fetch the profile, remove duplicates (handy if network requests to S3 are being done ),

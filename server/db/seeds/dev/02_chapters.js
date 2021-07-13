@@ -14,7 +14,7 @@ exports.seed = function (knex) {
           const slug = faker.helpers.slugify(name);
           const status = ['published', 'draft', 'archived'];
           const tags = ['internet basics', 'content creation', 'digital wellness', 'data protection and privacy',
-            'online safety', 'relationships & communications', 'news & media literacy', 'online working',
+            'online safety', 'relationships and communications', 'news and media literacy', 'online working',
             'online learning', 'life skills', 'health', 'digital financial literacy'];
 
           const chapterId = ['chapter1', 'chapter2'];
